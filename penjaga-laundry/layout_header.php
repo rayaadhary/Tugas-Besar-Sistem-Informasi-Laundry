@@ -75,13 +75,13 @@
                 </div>
                 <ul class="nav" id="side-menu">
                     <li style="padding: 70px 0 0;">
-                        <a href="index.php" class="waves-effect 
+                        <a href="../pemilik/index.php" class="waves-effect 
                             <?php if ($title == '') {
                                 echo 'active';
                             } ?>">
                             <i class="fa fa-tachometer fa-fw" aria-hidden="true"></i>Dashboard
                         </a>
-                        <a href="index.php" class="waves-effect 
+                        <a href="../pemilik/transaksi.php" class="waves-effect 
                             <?php if ($title == '') {
                                 echo 'active';
                             } ?>">
