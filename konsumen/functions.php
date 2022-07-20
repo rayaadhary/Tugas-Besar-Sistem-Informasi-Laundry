@@ -2,7 +2,7 @@
 session_start();
 
 if ($_SESSION) {
-    if ($_SESSION['jabatan'] == 'Owner') {
+    if ($_SESSION['jabatan'] == 'pemilik') {
     } else {
         header('location:../index.php');
     }
