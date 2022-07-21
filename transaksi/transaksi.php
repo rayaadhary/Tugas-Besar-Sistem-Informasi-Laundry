@@ -2,11 +2,11 @@
 $title = 'Transaksi';
 require '../functions.php';
 require '../layout/layout_header.php';
-$db = dbConnect();
+
 
 if (isset($_POST['keyword'])) {
     $keyword = $_POST['keyword'];
-    $data = mysqli_query($db, "SELECT * FROM transaksi WHERE invoice lIKE '%" . $keyword . "%' 
+    $data = mysqli_query($conn, "SELECT * FROM transaksi WHERE invoice lIKE '%" . $keyword . "%' 
                                 OR tgl LIKE '%" . $keyword . "%'
                                 OR nm_karyawan LIKE '%" . $keyword . "%'
                                 OR nm_pelanggan LIKE '%" . $keyword . "%'
@@ -15,7 +15,7 @@ if (isset($_POST['keyword'])) {
                                 OR jumlah LIKE '%" . $keyword . "%'
                                 OR total LIKE '%" . $keyword . "%'");
 } else {
-    $data = mysqli_query($db, "SELECT * FROM transaksi");
+    $data = mysqli_query($conn, "SELECT * FROM transaksi");
 }
 
 $i = 1;
@@ -59,7 +59,7 @@ $i = 1;
             <div class="white-box">
                 <div class="row">
                     <div class="col-md-6">
-                        <a href="transaksi-tambah.php" class="btn btn-success box-title" title="Tambah Data"><i class="fa fa-plus fa-fw"></i> Tambah</a>
+                        <a href="transaksi-tambah.php" class="btn btn-primary box-title" title="Tambah Data"><i class="fa fa-plus fa-fw"></i> Tambah</a>
                     </div>
                 </div>
                 <?php
@@ -80,7 +80,7 @@ $i = 1;
                                 <th>Kode Cucian</th>
                                 <th>Berat</th>
                                 <th>Total</th>
-                                <th></th>
+                                <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
