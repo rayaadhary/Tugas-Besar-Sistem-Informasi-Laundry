@@ -9,7 +9,7 @@ require '../layout/layout_header.php';
             <h4 class="page-title">Konsumen Laundry</h4>
         </div>
     </div>
-
+ <div class="info-data" data-infodata="<?php if(isset($_SESSION['info'])){ echo $_SESSION['info']; } unset($_SESSION['info']); ?>"></div>
     <div class="row">
         <div class="col-md-12 col-lg-12 col-sm-12">
             <div class="white-box">
@@ -53,7 +53,8 @@ require '../layout/layout_header.php';
                                                     <i class="fa fa-pencil-square-o"></i>
                                                 </a>
                                                 <!-- a href -->
-                                                <a href="#" class="btn btn-danger btn-circle btn-sm">
+<!--                                                 <a href="#" class="btn btn-danger btn-circle btn-sm"> -->
+                                                    <a href="delete.php?id_konsumen=<?php echo $row["id_konsumen"];?>"  class="btn btn-danger btn-xs delete-data" >
                                                     <i class="fa fa-trash"></i>
                                                 </a>
                                             </td>
@@ -74,6 +75,15 @@ require '../layout/layout_header.php';
             </div>
         </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+	<!-- Swal -->
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9.15.2/dist/sweetalert2.all.min.js"></script>
+	<!-- Optional: include a polyfill for ES6 Promises for IE11 -->
+	<script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+	
 </div>
 <?php
 require '../layout/layout_footer.php';
