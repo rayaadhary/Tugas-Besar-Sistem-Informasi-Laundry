@@ -1,5 +1,5 @@
 <?php
-$title = 'Konsumen-Laundry';
+$title = 'Konsumen';
 require '../functions.php';
 require '../layout/layout_header.php';
 ?>

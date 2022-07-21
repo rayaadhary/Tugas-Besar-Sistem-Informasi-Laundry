@@ -1,6 +1,6 @@
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <?php
-$title = 'Penjaga-Laundry';
+$title = 'Penjaga Laundry';
 require '../functions.php';
 require '../layout/layout_header.php';
 ?>
@@ -50,11 +50,11 @@ require '../layout/layout_header.php';
                                             <td><?= $row['jabatan']; ?></td>
                                             <td>
                                                 <!-- a href -->
-                                                <a href="penjaga-edit.php?id_pegawai=<?php echo $row["id_pegawai"]; ?>" class="btn btn-success btn-circle btn-sm">
+                                                <a href="penjaga-form-edit.php?id_pegawai=<?php echo $row["id_pegawai"]; ?>" class="btn btn-success btn-circle btn-sm" title="Ubah">
                                                     <i class="fa fa-pencil-square-o"></i>
                                                 </a>
                                                 <!-- a href -->
-                                                <a href="penjaga-hapus.php?id_pegawai=<?php echo $row["id_pegawai"]; ?>" class="btn btn-danger btn-circle btn-sm" onclick="return ('yakin mau delete data?')" id="alert" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                                <a href="penjaga-hapus.php?id_pegawai=<?php echo $row["id_pegawai"]; ?>" title="Hapus" class="btn btn-danger btn-circle btn-sm" onclick="return ('yakin mau delete data?')" id="alert" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                                     <i class="fa fa-trash"></i>
                                                 </a>
                                             </td>

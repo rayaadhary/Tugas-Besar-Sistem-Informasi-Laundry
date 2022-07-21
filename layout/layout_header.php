@@ -58,7 +58,7 @@
                 <!-- /Logo -->
                 <ul class="nav navbar-top-links navbar-right pull-right">
                     <li>
-                        <a class="nav-toggler open-close waves-effect waves-light" href="javascript:void(0)"><i class="fa fa-bars"></i></a>
+                        <a class="nav-toggler open-close waves-effect waves-light hidden-lg" href="javascript:void(0)"><i class="fa fa-bars"></i></a>
                     </li>
                     <li>
                         <a class="profile-pic" href="#"> <img src="../assets/images/avatar.svg" alt="user-img" width="36" class="img-circle">
@@ -82,7 +82,7 @@
                             <i class="fa fa-tachometer fa-fw" aria-hidden="true"></i>Dashboard
                         </a>
                         <a href="../transaksi/transaksi.php" class="waves-effect 
-                            <?php if ($title == '') {
+                            <?php if ($title == 'Transaksi') {
                                 echo 'active';
                             } ?>">
                             <i class="fa fa-shopping-cart fa-fw" aria-hidden="true"></i>Transaksi
@@ -94,13 +94,13 @@
                             <i class="fa fa-file-text fa-fw" aria-hidden="true"></i>Laporan
                         </a>
                         <a href="../penjaga-laundry/penjaga-laundry.php" class="waves-effect 
-                            <?php if ($title == 'Penjaga-Laundry') {
+                            <?php if ($title == 'Penjaga Laundry') {
                                 echo 'active';
                             } ?>">
                             <i class="fa fa-user fa-fw" aria-hidden="true"></i>Penjaga Laundry
                         </a>
                         <a href="../konsumen/Konsumen-laundry.php" class="waves-effect 
-                            <?php if ($title == '') {
+                            <?php if ($title == 'Konsumen') {
                                 echo 'active';
                             } ?>">
                             <i class="fa fa-user fa-fw" aria-hidden="true"></i>Konsumen

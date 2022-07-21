@@ -10,8 +10,8 @@ $data = mysqli_fetch_assoc($row);
 
 if (isset($_POST["btn_login"])) {
     if ($password == $data['password']) {
-        if ($data['jabatan'] == 'Owner') {
-            $_SESSION['jabatan'] = 'Owner';
+        if ($data['jabatan'] == 'pemilik') {
+            $_SESSION['jabatan'] = 'pemilik';
             $_SESSION['nm_pegawai'] = $data['nm_pegawai'];
             header('location:owner');
         }
