@@ -1,7 +1,7 @@
 <?php
 $title = 'Transaksi';
-require 'functions.php';
-require 'layout_header.php';
+require '../functions.php';
+require '../layout/layout_header.php';
 $db = dbConnect();
 
 if (isset($_POST['keyword'])) {
@@ -111,5 +111,5 @@ $i = 1;
 </div>
 
 <?php
-require 'layout_footer.php';
+require '../layout/layout_footer.php';
 ?>

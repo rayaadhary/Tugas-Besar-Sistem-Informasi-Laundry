@@ -32,7 +32,7 @@
 </head>
 
 <body class="fix-header">
-    <?php if ($title == 'Dashboard') { ?>
+    <?php if ($title == 'Penjaga-Laundry') { ?>
         <div class="preloader">
             <svg class="circular" viewBox="25 25 50 50">
                 <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
@@ -75,26 +75,26 @@
                 </div>
                 <ul class="nav" id="side-menu">
                     <li style="padding: 70px 0 0;">
-                        <a href="index.php" class="waves-effect 
-                            <?php if ($title == 'Dashboard') {
+                        <a href="../pemilik/index.php" class="waves-effect 
+                            <?php if ($title == '') {
                                 echo 'active';
                             } ?>">
                             <i class="fa fa-tachometer fa-fw" aria-hidden="true"></i>Dashboard
                         </a>
-                        <a href="transaksi.php" class="waves-effect 
+                        <a href="../transaksi/transaksi.php" class="waves-effect 
                             <?php if ($title == '') {
                                 echo 'active';
                             } ?>">
                             <i class="fa fa-shopping-cart fa-fw" aria-hidden="true"></i>Transaksi
                         </a>
-                        <a href="index.php" class="waves-effect 
+                        <a href="../laporan/laporan.php" class="waves-effect 
                             <?php if ($title == '') {
                                 echo 'active';
                             } ?>">
                             <i class="fa fa-file-text fa-fw" aria-hidden="true"></i>Laporan
                         </a>
                         <a href="../penjaga-laundry/penjaga-laundry.php" class="waves-effect 
-                            <?php if ($title == '') {
+                            <?php if ($title == 'Penjaga-Laundry') {
                                 echo 'active';
                             } ?>">
                             <i class="fa fa-user fa-fw" aria-hidden="true"></i>Penjaga Laundry
@@ -108,7 +108,7 @@
                     </li>
                 </ul>
                 <div class="center p-20">
-                    <a href="logout.php" class="btn btn-danger btn-block waves-effect waves-light">Logout</a>
+                    <a href="logout.php" class="btn btn-danger btn-block waves-effect waves-light">Log Out</a>
                 </div>
             </div>
 

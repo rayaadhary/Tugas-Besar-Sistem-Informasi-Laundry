@@ -1,7 +1,7 @@
 <?php
 $title = 'Dashboard';
-require 'functions.php';
-require 'layout_header.php';
+require '../functions.php';
+require '../layout/layout_header.php';
 ?>
 <div class="container-fluid">
     <div class="row bg-title">
@@ -80,5 +80,5 @@ require 'layout_header.php';
     </div>
 </div>
 <?php
-require 'layout_footer.php';
+require '../layout/layout_footer.php';
 ?>

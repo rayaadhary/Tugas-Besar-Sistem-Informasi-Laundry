@@ -1,5 +1,5 @@
 <?php
-define("DEVELOPMENT",TRUE);
+define("DEVELOPMENT", TRUE);
 session_start();
 
 if ($_SESSION) {

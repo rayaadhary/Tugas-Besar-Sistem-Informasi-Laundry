@@ -1,95 +1,57 @@
-<?php
-$title = 'Penjaga-Laundry';
-require'functions.php';
+<?php include_once("functions.php"); ?>
+<!DOCTYPE html>
+<html>
 
-// $role = ['admin','owner','kasir'];
+<head>
+    <title>Pembaruan Data Produk</title>
+</head>
 
-// $id_user = $_GET['id'];
-// $queryedit = "SELECT * FROM user WHERE id_user = '$id_user'";
-// $edit = ambilsatubaris($conn,$queryedit);
+<body>
+    <?php banner(); ?>
+    <?php navigator(); ?>
 
-// if(isset($_POST['btn-simpan'])){
-//     $nama     = $_POST['nama_user'];
-//     $username = $_POST['username'];
-//     $role     = $_POST['role'];
-//     if($_POST['password'] != null || $_POST['password'] == ''){
-//         $pass     = md5($_POST['password']);
-//         $query = "UPDATE user SET nama_user = '$nama' , username = '$username' , role = '$role' , password ='$pass' WHERE id_user = '$id_user'";    
-//     }else{
-//         $query = "UPDATE user SET nama_user = '$nama' , username = '$username' , role = '$role' WHERE id_user = '$id_user'";
-//     }
-    
-    
-//     $execute = bisa($conn,$query);
-//     if($execute == 1){
-//         $success = 'true';
-//         $title = 'Berhasil';
-//         $message = 'Berhasil mengubah ' .$role;
-//         $type = 'success';
-//         header('location: pengguna.php?crud='.$success.'&msg='.$message.'&type='.$type.'&title='.$title);
-//     }else{
-//         echo "Gagal Tambah Data";
-//     }
-// }
+    <h1>Pembaruan Data Produk</h1>
+    <?php
+    if (isset($_POST["TblUpdate"])) {
+        $db = dbConnect();
+        if ($db->connect_errno == 0) {
+            // Bersihkan data
+            $IdProduk  = $db->escape_string($_POST["IdProduk"]);
+            $Nama       = $db->escape_string($_POST["Nama"]);
+            $IdKategori = $db->escape_string($_POST["IdKategori"]);
+            $Skala       = $db->escape_string($_POST["Skala"]);
+            // Susun query update
+            $sql = "UPDATE produk SET 
+			  Nama='$Nama',IdKategori='$IdKategori',Skala='$Skala',
+			  Pemasok='$Pemasok',Deskripsi='$Deskripsi',Stok='$Stok',
+			  HargaBeli='$HargaBeli',HargaJual='$HargaJual',
+			  IdPegawai='" . $db->escape_string($_SESSION["IdPegawai"]) . "'
+			  WHERE id_pegawai='$id_pegawai'";
+            // Eksekusi query update
+            $res = $db->query($sql);
+            if ($res) {
+                if ($db->affected_rows > 0) { // jika ada update data
+    ?>
+                    Data berhasil diupdate.<br>
+                    <a href="produk.php"><button>View Produk</button></a>
+                <?php
+                } else { // Jika sql sukses tapi tidak ada data yang berubah
+                ?>
+                    Data berhasil diupdate tetapi tanpa ada perubahan data.<br>
+                    <a href="javascript:history.back()"><button>Edit Kembali</button></a>
+                    <a href="produk.php"><button>View Produk</button></a>
+                <?php
+                }
+            } else { // gagal query
+                ?>
+                Data gagal diupdate.
+                <a href="javascript:history.back()"><button>Edit Kembali</button></a>
+    <?php
+            }
+        } else
+            echo "Gagal koneksi" . (DEVELOPMENT ? " : " . $db->connect_error : "") . "<br>";
+    }
+    ?>
+</body>
 
-
-require'layout_header.php';
-?> 
-<div class="container-fluid">
-    <div class="row bg-title">
-        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-            <h4 class="page-title">Ubah Data Penjaga Laundry</h4> </div>
-        <!-- /.col-lg-12 -->
-    </div>
-    <div class="row">
-        <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
-            <div class="white-box">
-                <div class="row">
-                    <div class="col-md-6">
-                          <a href="javascript:void(0)" onclick="window.history.back();" class="btn btn-primary box-title"><i class="fa fa-arrow-left fa-fw"></i> Kembali</a>
-                    </div>
-                    <div class="col-md-6 text-right">
-                        <button id="btn-refresh" class="btn btn-primary box-title text-right" title="Refresh Data"><i class="fa fa-refresh" id="ic-refresh"></i></button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
-            <div class="white-box">
-                <form method="post" action="">
-                <div class="form-group">
-                    <label>ID</label>
-                    <input type="text" name="id_pegawai" class="form-control" value="<?= $edit['id_pegawai'] ?>">
-                </div>
-                <div class="form-group">
-                    <label>Nama Penjaga Laundry</label>
-                    <input type="text" name="nm_pegawai" class="form-control" value="<?= $edit['nm_pegawai'] ?>">
-                <div class="form-group">
-                    <label>No Telepon</label>
-                    <input type="text" name="no_tlp" class="form-control" value="<?= $edit['no_tlp'] ?>">
-                </div>
-                <div class="form-group">
-                    <label>Jabatan</label>
-                    <select name="jabatan" class="form-control">
-                        <?php foreach ($jabatan as $key): ?>
-                            <?php if ($key == $edit['jabatan']): ?>
-                            <option value="<?= $key ?>" selected><?= $key ?></option>    
-                            <?php endif ?>
-                            <option value="<?= $key ?>"><?= ucfirst($key) ?></option>
-                        <?php endforeach ?>
-                    </select>
-                </div>
-                <div class="text-right">
-                    <button type="reset" class="btn btn-danger">Reset</button>
-                    <button type="submit" name="btn-simpan" class="btn btn-primary">Simpan</button>
-                </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-<?php
-require'layout_footer.php';
-?> 
+</html>
