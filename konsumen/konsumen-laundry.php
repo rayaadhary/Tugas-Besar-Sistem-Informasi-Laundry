@@ -83,7 +83,7 @@ require '../layout/layout_header.php';
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9.15.2/dist/sweetalert2.all.min.js"></script>
 	<!-- Optional: include a polyfill for ES6 Promises for IE11 -->
 	<script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
-	
+	    <script src="js-ku.js"></script>
 </div>
 <?php
 require '../layout/layout_footer.php';
