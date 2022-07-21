@@ -50,11 +50,11 @@ require '../layout/layout_header.php';
                                             <td><?= $row['jabatan']; ?></td>
                                             <td>
                                                 <!-- a href -->
-                                                <a href="penjaga-form-edit.php?id_pegawai=<?php echo $row["id_pegawai"]; ?>" class="btn btn-success btn-circle btn-sm" title="Ubah">
+                                                <a href="penjaga-form-edit.php?id_pegawai=<?php echo $row["id_pegawai"]; ?>" class="btn btn-success btn-sm" title="Ubah">
                                                     <i class="fa fa-pencil-square-o"></i>
                                                 </a>
                                                 <!-- a href -->
-                                                <a href="penjaga-hapus.php?id_pegawai=<?php echo $row["id_pegawai"]; ?>" title="Hapus" class="btn btn-danger btn-circle btn-sm" onclick="return ('yakin mau delete data?')" id="alert" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                                <a href="penjaga-hapus.php?id_pegawai=<?php echo $row["id_pegawai"];?>"  class="btn btn-danger btn-sm delete-data">
                                                     <i class="fa fa-trash"></i>
                                                 </a>
                                             </td>
@@ -75,6 +75,15 @@ require '../layout/layout_header.php';
             </div>
         </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+	<!-- Swal -->
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9.15.2/dist/sweetalert2.all.min.js"></script>
+	<!-- Optional: include a polyfill for ES6 Promises for IE11 -->
+	<script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+	<script src="../assets/js/js-hapus.js"></script>
 </div>
 <?php
 require '../layout/layout_footer.php';

@@ -2,35 +2,30 @@
 $title = 'Penjaga-Laundry';
 require '../functions.php';
 
-// $role = ['admin','owner','kasir'];
+$jabatan = ['pemilik','penjaga laundry'];
 
-// $id_user = $_GET['id'];
-// $queryedit = "SELECT * FROM user WHERE id_user = '$id_user'";
-// $edit = ambilsatubaris($conn,$queryedit);
+$id_pegawai = $_GET['id_pegawai'];
+$sql = "SELECT * FROM pegawai WHERE id_pegawai = '$id_pegawai '";
+$edit = ambilsatubaris($conn,$sql);
 
-// if(isset($_POST['btn-simpan'])){
-//     $nama     = $_POST['nama_user'];
-//     $username = $_POST['username'];
-//     $role     = $_POST['role'];
-//     if($_POST['password'] != null || $_POST['password'] == ''){
-//         $pass     = md5($_POST['password']);
-//         $query = "UPDATE user SET nama_user = '$nama' , username = '$username' , role = '$role' , password ='$pass' WHERE id_user = '$id_user'";    
-//     }else{
-//         $query = "UPDATE user SET nama_user = '$nama' , username = '$username' , role = '$role' WHERE id_user = '$id_user'";
-//     }
+if(isset($_POST['btn-simpan'])){
+    $nama     = $_POST['nm_pegawai'];
+    $telp = $_POST['no_tlp'];
+    $jabatan     = $_POST['jabatan'];
+    $query = "UPDATE pegawai SET nm_pegawai = '$nama', no_tlp = '$telp', jabatan = '$jabatan' WHERE id_pegawai ='$id_pegawai'";
+    
 
-
-//     $execute = bisa($conn,$query);
-//     if($execute == 1){
-//         $success = 'true';
-//         $title = 'Berhasil';
-//         $message = 'Berhasil mengubah ' .$role;
-//         $type = 'success';
-//         header('location: pengguna.php?crud='.$success.'&msg='.$message.'&type='.$type.'&title='.$title);
-//     }else{
-//         echo "Gagal Tambah Data";
-//     }
-// }
+    $execute = bisa($conn,$query);
+    if($execute == 1){
+        $success = 'true';
+        $title = 'Berhasil';
+        $message = 'Berhasil mengubah ' .$jabatan;
+        $type = 'success';
+        header('location: penjaga-laundry.php?crud='.$success.'&msg='.$message.'&type='.$type.'&title='.$title);
+    }else{
+        echo "Gagal Tambah Data";
+    }
+}
 
 
 require '../layout/layout_header.php';
@@ -74,12 +69,10 @@ require '../layout/layout_header.php';
                         <div class="form-group">
                             <label>Jabatan</label>
                             <select name="jabatan" class="form-control">
-                                <?php foreach ($jabatan as $key) : ?>
-                                    <?php if ($key == $edit['jabatan']) : ?>
-                                        <option value="<?= $key ?>" selected><?= $key ?></option>
-                                    <?php endif ?>
-                                    <option value="<?= $key ?>"><?= ucfirst($key) ?></option>
-                                <?php endforeach ?>
+                                <?php foreach ($jabatan as $key) { ?>
+                                <?php if ($key == $edit['jabatan']) ?>
+                                <option value="<?= $key ?>" selected><?= $key ?></option>    
+                                <?php } ?>
                             </select>
                         </div>
                         <div class="text-right">
