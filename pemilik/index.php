@@ -69,37 +69,6 @@ require '../layout/layout_header.php';
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-12 col-lg-12 col-sm-12">
-            <div class="white-box">
-                <h3 class="box-title">Daftar Transaksi</h3>
-                <div class="table-responsive">
-                    <table class="table ">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>No. Faktur</th>
-                                <th>Tanggal</th>
-                                <th>Konsumen</th>
-                                <th>Total</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php $no = 1; ?>
-                            <tr>
-                                <td><?= $no++ ?></td>
-                                <td>-</td>
-                                <td>-</td>
-                                <td>-</td>
-                                <td>-</td>
-                            </tr>
-
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
 </div>
 <?php
 require '../layout/layout_footer.php';

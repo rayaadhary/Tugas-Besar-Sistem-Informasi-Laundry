@@ -1,5 +1,5 @@
 <?php
-$title = 'Ubah Laporan';
+$title = 'Laporan';
 require '../functions.php';
 
 
@@ -20,9 +20,13 @@ if (isset($_POST['btn-simpan'])) {
 
         $execute = bisa($conn, $query);
         if ($execute == 1) {
-            header('location:laporan.php?msg=oke');
+              $success = 'true';
+        $title = 'Berhasil';
+        $message = 'Berhasil mengubah laporan';
+        $type = 'success';
+        header('location: laporan.php?crud=' . $success . '&msg=' . $message . '&type=' . $type . '&title=' . $title);
         } else {
-            header('location:laporan.php?msg=error');
+            echo "Gagal Ubah Data";
         }
     } else {
         echo "Gagal koneksi" . (DEVELOPMENT ? " : " . $db->connect_error : "") . "<br>";

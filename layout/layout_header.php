@@ -76,7 +76,7 @@
                 <ul class="nav" id="side-menu">
                     <li style="padding: 70px 0 0;">
                         <a href="../pemilik/index.php" class="waves-effect 
-                            <?php if ($title == '') {
+                            <?php if ($title == 'Dashboard') {
                                 echo 'active';
                             } ?>">
                             <i class="fa fa-tachometer fa-fw" aria-hidden="true"></i>Dashboard
@@ -94,7 +94,7 @@
                             <i class="fa fa-tasks fa-fw" aria-hidden="true"></i>Barang
                         </a>
                         <a href="../laporan/laporan.php" class="waves-effect 
-                            <?php if ($title == '') {
+                            <?php if ($title == 'Laporan') {
                                 echo 'active';
                             } ?>">
                             <i class="fa fa-file-text fa-fw" aria-hidden="true"></i>Laporan

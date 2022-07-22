@@ -14,7 +14,7 @@ if (mysqli_query($conn, $query)) {
 }
 
 else {
-    echo "Error: " . $query . "<br>" . mysqli_error($conn);
+    echo "Gagal hapus data: " . $query . "<br>" . mysqli_error($conn);
 }
 mysqli_close($conn);
 

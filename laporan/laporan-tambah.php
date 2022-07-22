@@ -1,5 +1,5 @@
 <?php
-$title = 'Tambah Laporan';
+$title = 'Laporan';
 require '../functions.php';
 
 $db = dbConnect();
@@ -17,9 +17,13 @@ if (isset($_POST['btn-simpan'])) {
 
         $execute = bisa($conn, $query);
         if ($execute == 1) {
-            header('location:laporan.php?msg=oke');
+              $success = 'true';
+        $title = 'Berhasil';
+        $message = 'Berhasil menambah laporan';
+        $type = 'success';
+        header('location: laporan.php?crud=' . $success . '&msg=' . $message . '&type=' . $type . '&title=' . $title);
         } else {
-            header('location:laporan.php?msg=error');
+            echo "Gagal Tambah Data";
         }
     } else {
         echo "Gagal koneksi" . (DEVELOPMENT ? " : " . $db->connect_error : "") . "<br>";
