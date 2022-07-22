@@ -3,17 +3,17 @@ $title = 'Tambah Laporan';
 require '../functions.php';
 
 $db = dbConnect();
-$tgl = Date('Y-m-d h:i:s');
+date_default_timezone_set("Asia/Jakarta");
+$tgl = Date('Y-m-d H:i');
 $transaksi = ambildata($conn, "SELECT * FROM transaksi WHERE no_faktur NOT IN (SELECT no_faktur FROM laporan)");
 
 if (isset($_POST['btn-simpan'])) {
-    if ($db->errno == 0) {
-        $id_laporan = $_POST['id_laporan'];
+    if ($db->errno == 0) {     
         $tgl = $_POST['tgl'];
         $no_faktur = $_POST['no_faktur'];
         $total = $_POST['total'];
 
-        $query = "INSERT INTO laporan (id_laporan,tgl,no_faktur,total) VALUES ('$id_laporan','$tgl','$no_faktur','$total')";
+        $query = "INSERT INTO laporan (tgl,no_faktur,total) VALUES ('$tgl','$no_faktur','$total')";
 
         $execute = bisa($conn, $query);
         if ($execute == 1) {
@@ -47,10 +47,6 @@ require '../layout/layout_header.php';
         <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
             <div class="white-box">
                 <form method="post" action="">
-                    <div class="form-group">
-                        <label>ID Laporan</label>
-                        <input type="text" name="id_laporan" class="form-control" maxlength="5" required oninvalid="this.setCustomValidity('Silahkan masukkan id laporan')" oninput="setCustomValidity('')">
-                    </div>
                     <div class="form-group">
                         <label>Tanggal</label>
                         <input type="datetime" name="tgl" class="form-control" value="<?= $tgl; ?>" readonly>

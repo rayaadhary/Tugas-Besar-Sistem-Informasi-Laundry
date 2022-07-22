@@ -87,6 +87,12 @@
                             } ?>">
                             <i class="fa fa-shopping-cart fa-fw" aria-hidden="true"></i>Transaksi
                         </a>
+                          <a href="../barang/barang.php" class="waves-effect 
+                            <?php if ($title == 'Barang') {
+                                echo 'active';
+                            } ?>">
+                            <i class="fa fa-tasks fa-fw" aria-hidden="true"></i>Barang
+                        </a>
                         <a href="../laporan/laporan.php" class="waves-effect 
                             <?php if ($title == '') {
                                 echo 'active';

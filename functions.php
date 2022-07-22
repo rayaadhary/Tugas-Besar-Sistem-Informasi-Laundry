@@ -31,6 +31,45 @@ function ambildata($conn, $query)
     }
 }
 
+function getListPegawai()
+{
+    $conn = dbConnect();
+    if($conn->connect_errno==0){
+		$res=$conn->query("SELECT * 
+						 FROM pegawai
+                         WHERE jabatan = 'penjaga laundry'
+						 ORDER BY id_pegawai");
+		if($res){
+			$data=$res->fetch_all(MYSQLI_ASSOC);
+			$res->free();
+			return $data;
+		}
+		else
+			return FALSE; 
+	}
+	else
+		return FALSE;
+}
+
+function getListKonsumen()
+{
+    $conn = dbConnect();
+    if($conn->connect_errno==0){
+		$res=$conn->query("SELECT * 
+						 FROM konsumen
+                         ORDER BY id_konsumen");
+		if($res){
+			$data=$res->fetch_all(MYSQLI_ASSOC);
+			$res->free();
+			return $data;
+		}
+		else
+			return FALSE; 
+	}
+	else
+		return FALSE;
+}
+
 function bisa($conn, $query)
 {
     $db = mysqli_query($conn, $query);
@@ -53,3 +92,25 @@ function hapus($where, $table, $redirect)
     $query = 'DELETE FROM ' . $table . ' WHERE ' . $where;
     echo $query;
 }
+
+function getDataFaktur($nofaktur)
+{
+$db = dbConnect();
+if ($db->connect_errno == 0) {
+$res = $db->query("SELECT p.no_faktur, p.tgl, i.id_pegawai, k.id_konsumen, k.no_tlp ,k.nm_konsumen,b.kd_cucian, p.layanan, b.nm_brg, b.deskripsi,
+    p.berat, p.total FROM transaksi p JOIN konsumen k ON p.id_konsumen=k.id_konsumen JOIN  barang b ON p.kd_cucian=b.kd_cucian 
+    JOIN  pegawai i ON p.id_pegawai=i.id_pegawai
+WHERE p.no_faktur='$nofaktur'");
+if ($res) {
+if ($res->num_rows > 0) {
+$data = $res->fetch_assoc();
+$res->free();
+return $data;
+} else
+return FALSE;
+} else
+return FALSE;
+} else
+return FALSE;
+}
+

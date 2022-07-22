@@ -28,7 +28,7 @@ require '../layout/layout_header.php';
                             <table class="table" id="table">
                                 <thead>
                                     <tr>
-                                        <th>NO</th>
+                                        <th>#</th>
                                         <th>ID</th>
                                         <th>Tanggal</th>
                                         <th>No. Faktur</th>

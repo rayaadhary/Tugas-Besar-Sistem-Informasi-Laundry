@@ -14,11 +14,6 @@ require '../layout/layout_header.php';
         <div class="col-md-12 col-lg-12 col-sm-12">
             <div class="white-box">
             <form method="post" action="">
-            <div class="row">
-                    <div class="col-md-6">
-                        <a href="konsumen-tambah.php" class="btn btn-primary box-title"><i class="fa fa-plus fa-fw"></i> Tambah</a>
-                    </div>  
-            </div>
                 <?php
                             if($conn->connect_errno==0){
                             $sql="SELECT id_konsumen, nm_konsumen, no_tlp FROM konsumen";
@@ -29,11 +24,10 @@ require '../layout/layout_header.php';
                     <table class="table"  id="table">
                         <thead>
                             <tr>
-                                <th>NO</th>
+                                <th>#</th>
                                 <th>ID</th>
                                 <th>Nama</th>
                                 <th>Telepon</th>
-                                <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -46,17 +40,6 @@ require '../layout/layout_header.php';
                                 <td><?= $row['id_konsumen']; ?></td>
                                 <td><?= $row['nm_konsumen']; ?></td>
                                 <td><?= $row['no_tlp']; ?></td>
-                                
-                                <td>
-                                <!-- a href -->
-                                <a href="konsumen-form-edit.php?id_konsumen=<?php echo $row["id_konsumen"]; ?>" class="btn btn-success btn-sm" title="Ubah">
-                                <i class="fa fa-pencil-square-o"></i>
-                                </a>
-                                <!-- a href -->
-                                <a href="konsumen-hapus.php?id_konsumen=<?php echo $row["id_konsumen"];?>"  class="btn btn-danger btn-sm delete-data">                              
-                                <i class="fa fa-trash"></i>
-                                </a>
-                                </td>
                             </tr>
                               <?php
                                     }

@@ -8,7 +8,7 @@ $db=new mysqli("localhost","root","","db_laundry");// Sesuaikan dengan konfigura
 	
 for ($i = 1 ;$i <= 25; $i++){
 
-    $db=("INSERT INTO konsumen(nm_konsumen,no_tlp)
+    $db->query("INSERT INTO konsumen(nm_konsumen,no_tlp)
     VALUES('{$faker->name}','{$faker->phoneNumber}')
     ");
    

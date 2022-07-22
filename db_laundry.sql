@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 20, 2022 at 08:15 PM
+-- Generation Time: Jul 22, 2022 at 12:54 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.1
 
@@ -28,11 +28,24 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `barang` (
-  `kd_cucian` varchar(5) NOT NULL,
+  `kd_cucian` int(11) NOT NULL,
   `id_konsumen` int(11) DEFAULT NULL,
   `nm_brg` text DEFAULT NULL,
   `deskripsi` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `barang`
+--
+
+INSERT INTO `barang` (`kd_cucian`, `id_konsumen`, `nm_brg`, `deskripsi`) VALUES
+(1, 4, 'Hoodie', 'Hitam'),
+(2, 5, 'Jaket', 'XL'),
+(3, 6, 'fafha', 'kfehjfhj'),
+(4, 7, 'baju', 'baju hitam'),
+(5, 8, 'Jaket Parasut', 'Biru'),
+(6, 9, 'Sweater', 'Long Sleeve'),
+(7, 10, 'Jacket Coach', 'LGBT');
 
 -- --------------------------------------------------------
 
@@ -46,6 +59,22 @@ CREATE TABLE `konsumen` (
   `no_tlp` varchar(13) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `konsumen`
+--
+
+INSERT INTO `konsumen` (`id_konsumen`, `nm_konsumen`, `no_tlp`) VALUES
+(1, 'Sadina Melani S.Pt', '0293 2793 142'),
+(2, 'Genta Talia Namaga', '0652 2109 846'),
+(3, 'Farah Prastuti', '0785 3741 789'),
+(4, 'Rifa Anime', '89525670855'),
+(5, 'Mujahid', '89678876500'),
+(6, 'fanfa', '0'),
+(7, 'domba puyih', '896666'),
+(8, 'Rifa Anime', '6289525670855'),
+(9, 'ahmad mujahid ramdani', '8967898278'),
+(10, 'DAFFA SUAMI WINTER', '628952567898');
+
 -- --------------------------------------------------------
 
 --
@@ -56,7 +85,7 @@ CREATE TABLE `laporan` (
   `id_laporan` int(11) NOT NULL,
   `tgl` datetime DEFAULT NULL,
   `no_faktur` int(11) DEFAULT NULL,
-  `total` int(8) DEFAULT NULL
+  `total` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -78,32 +107,14 @@ CREATE TABLE `pegawai` (
 --
 
 INSERT INTO `pegawai` (`id_pegawai`, `nm_pegawai`, `no_tlp`, `jabatan`, `password`) VALUES
-('admin', 'admin', NULL, 'pemilik', 'admin'),
-('P0001', 'Lidya Latika Pudjiastuti', '0420 1915 131', 'penjaga laundry', 'P0001'),
-('P0010', 'Asmuni Karsana Kusumo S.Pt', '(+62) 206 647', 'pemilik', 'P0010'),
-('P0011', 'Farah Eva Nasyiah', '0327 3836 129', 'penjaga laundry', 'P0011'),
-('P0012', 'Genta Mardhiyah M.Ak', '0699 3874 843', 'penjaga laundry', 'P0012'),
-('P0013', 'Karya Permadi', '0265 9143 645', 'penjaga laundry', 'P0013'),
-('P0014', 'Mustika Adriansyah', '(+62) 970 764', 'pemilik', 'P0014'),
-('P0015', 'Tugiman Simanjuntak', '024 3026 6267', 'pemilik', 'P0015'),
-('P0016', 'Halima Natalia Mulyani M.Farm', '(+62) 952 199', 'penjaga laundry', 'P0016'),
-('P0017', 'Teddy Unggul Wahyudin', '0705 8912 130', 'pemilik', 'P0017'),
-('P0018', 'Sabri Umar Irawan', '0811 9045 992', 'penjaga laundry', 'P0018'),
-('P0019', 'Irfan Prakasa', '(+62) 29 8245', 'penjaga laundry', 'P0019'),
-('P002', 'Rachel Zizi Lailasari M.TI.', '(+62) 26 5790', 'penjaga laundry', 'P002'),
-('P0020', 'Oman Hardiansyah', '(+62) 331 925', 'pemilik', 'P0020'),
-('P0021', 'Gawati Riyanti', '(+62) 877 259', 'penjaga laundry', 'P0021'),
-('P0022', 'Raina Widiastuti', '0374 9017 187', 'penjaga laundry', 'P0022'),
-('P0023', 'Elma Winarsih', '0773 4484 235', 'penjaga laundry', 'P0023'),
-('P0024', 'Pardi Wibisono', '0614 8584 006', 'penjaga laundry', 'P0024'),
-('P0025', 'Shania Kuswandari', '0791 5483 203', 'penjaga laundry', 'P0025'),
-('P003', 'Wardi Samosir S.Farm', '0805 6678 402', 'pemilik', 'P003'),
-('P004', 'Hasna Raisa Purwanti S.E.', '0701 6265 942', 'pemilik', 'P004'),
-('P005', 'Talia Utami S.H.', '(+62) 540 926', 'penjaga laundry', 'P005'),
-('P006', 'Eva Suartini S.Pd', '0972 4346 818', 'penjaga laundry', 'P006'),
-('P007', 'Uli Permata', '(+62) 856 760', 'penjaga laundry', 'P007'),
-('P008', 'Laras Purwanti', '(+62) 20 7704', 'pemilik', 'P008'),
-('P009', 'Maryanto Zulkarnain', '0900 9776 987', 'penjaga laundry', 'P009');
+('P0010', 'Lulut Firmansyah M.M.', '(+62) 821 813', 'pemilik', 'P0010'),
+('P002', 'Pardi Simanjuntak', '0421 4772 247', 'pemilik', 'P002'),
+('P003', 'Rahayu Usamah', '0718 8537 475', 'pemilik', 'P003'),
+('P004', 'Garang Kemba Kurniawan M.Farm', '020 8822 871', 'penjaga laundry', 'P004'),
+('P005', 'Endra Hendri Sitorus', '(+62) 287 672', 'pemilik', 'P005'),
+('P006', 'Siska Kusmawati', '(+62) 892 394', 'pemilik', 'P006'),
+('P007', 'Yani Nuraini', '(+62) 711 263', 'penjaga laundry', 'P007'),
+('P009', 'Legawa Dongoran', '0301 3081 201', 'penjaga laundry', 'P009');
 
 -- --------------------------------------------------------
 
@@ -116,11 +127,18 @@ CREATE TABLE `transaksi` (
   `tgl` datetime DEFAULT NULL,
   `id_pegawai` varchar(5) DEFAULT NULL,
   `id_konsumen` int(11) DEFAULT NULL,
-  `kd_cucian` varchar(5) DEFAULT NULL,
+  `kd_cucian` int(11) DEFAULT NULL,
   `layanan` enum('regular','one_day','express','') NOT NULL,
   `berat` int(11) DEFAULT NULL,
   `total` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `transaksi`
+--
+
+INSERT INTO `transaksi` (`no_faktur`, `tgl`, `id_pegawai`, `id_konsumen`, `kd_cucian`, `layanan`, `berat`, `total`) VALUES
+(7, '2022-07-22 17:41:00', 'P004', 10, 7, 'express', 1, 7000);
 
 --
 -- Indexes for dumped tables
@@ -131,7 +149,7 @@ CREATE TABLE `transaksi` (
 --
 ALTER TABLE `barang`
   ADD PRIMARY KEY (`kd_cucian`),
-  ADD KEY `barang_ibfk_1` (`id_konsumen`);
+  ADD KEY `id_konsumen` (`id_konsumen`);
 
 --
 -- Indexes for table `konsumen`
@@ -166,16 +184,28 @@ ALTER TABLE `transaksi`
 --
 
 --
+-- AUTO_INCREMENT for table `barang`
+--
+ALTER TABLE `barang`
+  MODIFY `kd_cucian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
 -- AUTO_INCREMENT for table `konsumen`
 --
 ALTER TABLE `konsumen`
-  MODIFY `id_konsumen` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_konsumen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT for table `laporan`
+--
+ALTER TABLE `laporan`
+  MODIFY `id_laporan` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `transaksi`
 --
 ALTER TABLE `transaksi`
-  MODIFY `no_faktur` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `no_faktur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Constraints for dumped tables
@@ -185,20 +215,21 @@ ALTER TABLE `transaksi`
 -- Constraints for table `barang`
 --
 ALTER TABLE `barang`
-  ADD CONSTRAINT `barang_ibfk_1` FOREIGN KEY (`id_konsumen`) REFERENCES `konsumen` (`id_konsumen`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `barang_ibfk_1` FOREIGN KEY (`id_konsumen`) REFERENCES `konsumen` (`id_konsumen`);
 
 --
 -- Constraints for table `laporan`
 --
 ALTER TABLE `laporan`
-  ADD CONSTRAINT `laporan_ibfk_1` FOREIGN KEY (`no_faktur`) REFERENCES `transaksi` (`no_faktur`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `laporan_ibfk_1` FOREIGN KEY (`no_faktur`) REFERENCES `transaksi` (`no_faktur`) ON DELETE CASCADE ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `transaksi`
 --
 ALTER TABLE `transaksi`
-  ADD CONSTRAINT `transaksi_ibfk_2` FOREIGN KEY (`id_pegawai`) REFERENCES `pegawai` (`id_pegawai`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `transaksi_ibfk_5` FOREIGN KEY (`id_konsumen`) REFERENCES `konsumen` (`id_konsumen`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `transaksi_ibfk_2` FOREIGN KEY (`id_pegawai`) REFERENCES `pegawai` (`id_pegawai`),
+  ADD CONSTRAINT `transaksi_ibfk_7` FOREIGN KEY (`id_konsumen`) REFERENCES `konsumen` (`id_konsumen`) ON DELETE CASCADE,
+  ADD CONSTRAINT `transaksi_ibfk_8` FOREIGN KEY (`kd_cucian`) REFERENCES `barang` (`kd_cucian`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
