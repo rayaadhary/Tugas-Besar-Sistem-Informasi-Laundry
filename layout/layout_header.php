@@ -100,12 +100,12 @@
                             <i class="fa fa-file-text fa-fw" aria-hidden="true"></i>Laporan
                         </a>
                         <a href="../penjaga-laundry/penjaga-laundry.php" class="waves-effect 
-                            <?php if ($title == 'Penjaga Laundry') {
+                            <?php if ($title == 'Penjaga-Laundry') {
                                 echo 'active';
                             } ?>">
                             <i class="fa fa-user fa-fw" aria-hidden="true"></i>Penjaga Laundry
                         </a>
-                        <a href="../konsumen/Konsumen-laundry.php" class="waves-effect 
+                        <a href="../konsumen/konsumen-laundry.php" class="waves-effect 
                             <?php if ($title == 'Konsumen') {
                                 echo 'active';
                             } ?>">

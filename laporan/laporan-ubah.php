@@ -3,7 +3,7 @@ $title = 'Laporan';
 require '../functions.php';
 
 
-$id = $_GET['id'];
+$id = $_GET['id_laporan'];
 $laporan = ambilsatubaris($conn, "SELECT * FROM laporan WHERE id_laporan='$id'");
 $tgl = Date('Y-m-d h:i:s');
 $transaksi = ambildata($conn, "SELECT * FROM transaksi");
@@ -15,7 +15,7 @@ if (isset($_POST['btn-simpan'])) {
         $no_faktur = $_POST['no_faktur'];
         $total = $_POST['total'];
 
-        $query = "UPDATE laporan SET id_laporan='$id_laporan', tgl='$tgl', no_faktur='$no_faktur', total='$total' 
+        $query = "UPDATE laporan SET tgl='$tgl', no_faktur='$no_faktur', total='$total' 
                     WHERE id_laporan='$id'";
 
         $execute = bisa($conn, $query);
@@ -54,10 +54,6 @@ require '../layout/layout_header.php';
         <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
             <div class="white-box">
                 <form method="post" action="">
-                    <div class="form-group">
-                        <label>ID Laporan</label>
-                        <input type="text" name="id_laporan" class="form-control" value="<?= $laporan['id_laporan']; ?>" readonly>
-                    </div>
                     <div class="form-group">
                         <label>Tanggal</label>
                         <input type="datetime" name="tgl" class="form-control" value="<?= $tgl; ?>" readonly>

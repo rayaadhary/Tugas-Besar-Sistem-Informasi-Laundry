@@ -1,6 +1,5 @@
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <?php
-$title = 'Penjaga Laundry';
+$title = 'Penjaga-Laundry';
 require '../functions.php';
 require '../layout/layout_header.php';
 ?>
