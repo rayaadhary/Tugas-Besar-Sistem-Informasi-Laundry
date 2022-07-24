@@ -70,7 +70,7 @@ require '../layout/layout_header.php';
                         <label>Jabatan</label>
                         <select name="jabatan" class="form-control">
                             <?php foreach ($jabatan as $key) : ?>
-                                <?php if ($key == $ubah['jabatan']) : ?>
+                                <?php if ($key == $edit['jabatan']) : ?>
                                     <option value="<?= $key ?>" selected><?= $key ?></option>
                                 <?php else : ?>
                                     <option value="<?= $key ?>"><?= $key ?></option>
