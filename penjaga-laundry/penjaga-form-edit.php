@@ -66,15 +66,18 @@ require '../layout/layout_header.php';
                             <label>No Telepon</label>
                             <input type="text" name="no_tlp" class="form-control" value="<?= $edit['no_tlp'] ?>">
                         </div>
-                        <div class="form-group">
-                            <label>Jabatan</label>
-                            <select name="jabatan" class="form-control">
-                                <?php foreach ($jabatan as $key) { ?>
-                                <?php if ($key == $edit['jabatan']) ?>
-                                <option value="<?= $key ?>" selected><?= $key ?></option>    
-                                <?php } ?>
-                            </select>
-                        </div>
+                       <div class="form-group">
+                        <label>Jabatan</label>
+                        <select name="jabatan" class="form-control">
+                            <?php foreach ($jabatan as $key) : ?>
+                                <?php if ($key == $ubah['jabatan']) : ?>
+                                    <option value="<?= $key ?>" selected><?= $key ?></option>
+                                <?php else : ?>
+                                    <option value="<?= $key ?>"><?= $key ?></option>
+                                <?php endif; ?>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
                         <div class="text-right">
                             <button type="reset" class="btn btn-danger">Reset</button>
                             <button type="submit" name="btn-simpan" class="btn btn-primary">Simpan</button>

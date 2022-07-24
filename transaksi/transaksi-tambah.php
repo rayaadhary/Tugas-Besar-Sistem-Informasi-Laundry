@@ -6,7 +6,6 @@ date_default_timezone_set("Asia/Jakarta");
 
 $tgl = Date('Y-m-d H:i');
 
-$id_konsumen = 1 ;
 if(isset($_POST['btn-simpan'])){
 
     $nm_barang = $_POST['nm_barang'];
