@@ -4,15 +4,15 @@ require '../functions.php';
 
 $jabatan = ['pemilik','penjaga laundry'];
 
-$id_pegawai = $_GET['id_pegawai'];
-$sql = "SELECT * FROM pegawai WHERE id_pegawai = '$id_pegawai '";
+$id_pengguna = $_GET['id_pengguna'];
+$sql = "SELECT * FROM pengguna WHERE id_pengguna = '$id_pengguna '";
 $edit = ambilsatubaris($conn,$sql);
 
 if(isset($_POST['btn-simpan'])){
-    $nama     = $_POST['nm_pegawai'];
+    $nama     = $_POST['nm_pengguna'];
     $telp = $_POST['no_tlp'];
     $jabatan     = $_POST['jabatan'];
-    $query = "UPDATE pegawai SET nm_pegawai = '$nama', no_tlp = '$telp', jabatan = '$jabatan' WHERE id_pegawai ='$id_pegawai'";
+    $query = "UPDATE pengguna SET nm_pengguna = '$nama', no_tlp = '$telp', jabatan = '$jabatan' WHERE id_pengguna ='$id_pengguna'";
     
 
     $execute = bisa($conn,$query);
@@ -57,11 +57,11 @@ require '../layout/layout_header.php';
                 <form method="post" action="">
                     <div class="form-group">
                         <label>ID</label>
-                        <input type="text" name="id_pegawai" class="form-control" value="<?= $edit['id_pegawai'] ?>">
+                        <input type="text" name="id_pengguna" class="form-control" value="<?= $edit['id_pengguna'] ?>">
                     </div>
                     <div class="form-group">
                         <label>Nama Penjaga Laundry</label>
-                        <input type="text" name="nm_pegawai" class="form-control" value="<?= $edit['nm_pegawai'] ?>">
+                        <input type="text" name="nm_pengguna" class="form-control" value="<?= $edit['nm_pengguna'] ?>">
                         <div class="form-group">
                             <label>No Telepon</label>
                             <input type="text" name="no_tlp" class="form-control" value="<?= $edit['no_tlp'] ?>">

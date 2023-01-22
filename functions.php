@@ -31,14 +31,14 @@ function ambildata($conn, $query)
     }
 }
 
-function getListPegawai()
+function getListPengguna()
 {
     $conn = dbConnect();
     if($conn->connect_errno==0){
 		$res=$conn->query("SELECT * 
-						 FROM pegawai
+						 FROM pengguna
                          WHERE jabatan = 'penjaga laundry'
-						 ORDER BY id_pegawai");
+						 ORDER BY id_pengguna");
 		if($res){
 			$data=$res->fetch_all(MYSQLI_ASSOC);
 			$res->free();
@@ -58,6 +58,25 @@ function getListKonsumen()
 		$res=$conn->query("SELECT * 
 						 FROM konsumen
                          ORDER BY id_konsumen");
+		if($res){
+			$data=$res->fetch_all(MYSQLI_ASSOC);
+			$res->free();
+			return $data;
+		}
+		else
+			return FALSE; 
+	}
+	else
+		return FALSE;
+}
+
+function getListLayanan()
+{
+    $conn = dbConnect();
+    if($conn->connect_errno==0){
+		$res=$conn->query("SELECT * 
+						 FROM layanan
+                         ORDER BY id_layanan");
 		if($res){
 			$data=$res->fetch_all(MYSQLI_ASSOC);
 			$res->free();

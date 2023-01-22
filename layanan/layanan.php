@@ -1,12 +1,12 @@
 <?php
-$title = 'Penjaga-Laundry';
+$title = 'layanan';
 require '../functions.php';
 require '../layout/layout_header.php';
 ?>
 <div class="container-fluid">
     <div class="row bg-title">
         <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-            <h4 class="page-title">Pengguna</h4>
+            <h4 class="page-title">layanan Transaksi Laundry</h4>
         </div>
     </div>
 
@@ -15,12 +15,12 @@ require '../layout/layout_header.php';
             <div class="white-box">
                 <div class="row">
                     <div class="col-md-6">
-                        <a href="penjaga-tambah.php" class="btn btn-primary box-title"><i class="fa fa-plus fa-fw"></i> Tambah</a>
+                        <a href="layanan-tambah.php" class="btn btn-primary box-title"><i class="fa fa-plus fa-fw"></i> Tambah</a>
                     </div>
                 </div>
                 <?php
                 if ($conn->connect_errno == 0) {
-                    $sql = "SELECT id_pengguna, nm_pengguna, no_tlp, jabatan FROM pengguna";
+                    $sql = "SELECT * FROM layanan";
                     $res = $conn->query($sql);
                     if ($res) {
                 ?>
@@ -30,9 +30,8 @@ require '../layout/layout_header.php';
                                     <tr>
                                         <th>#</th>
                                         <th>ID</th>
-                                        <th>Nama</th>
-                                        <th>Telepon</th>
-                                        <th>Jabatan</th>
+                                        <th>Nama Layanan</th>
+                                        <th>Harga</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -43,17 +42,17 @@ require '../layout/layout_header.php';
                                     ?>
                                         <tr>
                                             <td></td>
-                                            <td><?= $row['id_pengguna']; ?></td>
-                                            <td><?= $row['nm_pengguna']; ?></td>
-                                            <td><?= $row['no_tlp']; ?></td>
-                                            <td><?= $row['jabatan']; ?></td>
+                                            <td><?= $row['id_layanan']; ?></td>
+                                            <td><?= $row['nm_layanan']; ?></td>
+                                          
+                                            <td>Rp <?= number_format($row['harga'], 0, ',', '.'); ?></td>
                                             <td>
-                                                <!-- a href -->
-                                                <a href="penjaga-form-edit.php?id_pengguna=<?php echo $row["id_pengguna"]; ?>" class="btn btn-success btn-sm" title="Ubah">
+                                            <!-- a href -->
+                                                <a href="layanan-ubah.php?id_layanan=<?php echo $row["id_layanan"]; ?>" class="btn btn-success btn-sm" title="Ubah">
                                                     <i class="fa fa-pencil-square-o"></i>
                                                 </a>
                                                 <!-- a href -->
-                                                <a href="penjaga-hapus.php?id_pengguna=<?php echo $row["id_pengguna"];?>"  class="btn btn-danger btn-sm delete-data">
+                                                <a href="layanan-hapus.php?id_layanan=<?php echo $row["id_layanan"];?>"  class="btn btn-danger btn-sm delete-data">
                                                     <i class="fa fa-trash"></i>
                                                 </a>
                                             </td>
@@ -82,7 +81,7 @@ require '../layout/layout_header.php';
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9.15.2/dist/sweetalert2.all.min.js"></script>
 	<!-- Optional: include a polyfill for ES6 Promises for IE11 -->
 	<script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
-    <script src="../assets/js/js-hapus.js"></script>
+	<script src="../assets/js/js-hapus.js"></script>
 </div>
 <?php
 require '../layout/layout_footer.php';

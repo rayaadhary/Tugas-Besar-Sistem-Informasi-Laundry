@@ -21,10 +21,10 @@ require '../layout/layout_header.php';
                     <li class="text-right"><i class="ti-arrow-up text-success"></i>
                         <span class="counter text-success">
                             <?php
-                            $query = "SELECT COUNT(id_pegawai) FROM pegawai";
+                            $query = "SELECT COUNT(id_pengguna) FROM pengguna";
                             $result = ambilsatubaris($conn, $query);
                             ?>
-                            <?= $result['COUNT(id_pegawai)']; ?>
+                            <?= $result['COUNT(id_pengguna)']; ?>
                         </span>
                     </li>
                 </ul>

@@ -6,16 +6,12 @@ $faker = Faker\Factory::create("id_ID");
 
 $db=new mysqli("localhost","root","","db_laundry");// Sesuaikan dengan konfigurasi server anda.
 	
-for ($i = 1 ;$i <= 25; $i++){
-
-    $query="INSERT INTO konsumen(nm_konsumen,no_tlp)
-    VALUES('{$faker->name}','{$faker->phoneNumber}')";
-   
-    
-    }; 
-
+for ($i = 1; $i <= 25; $i++){
+    $query="INSERT INTO pengguna VALUES($i,'{$faker->name}','{$faker->phoneNumber}', '{$faker->randomElement(['pemilik', 'penjaga laundry'])}', 'admin')";
+    $res = mysqli_query($db, $query);
+}
         // Eksekusi query insert
-$res = mysqli_query($db, $query);
+
 if ($res) {
 if ($db->affected_rows > 0) { // jika ada penambahan data
 ?>

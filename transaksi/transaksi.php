@@ -20,7 +20,8 @@ if (isset($_POST['keyword'])) {
 
 $i = 1;
 ?>
-
+<script src="https://cdn.datatables.net/buttons/2.3.2/js/dataTables.buttons.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.3.2/js/buttons.print.min.js"></script>
 <div class="container-fluid">
     <div class="row bg-title">
         <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
@@ -75,11 +76,12 @@ $i = 1;
                                 <th>#</th>
                                 <th>No. Faktur</th>
                                 <th>Tanggal</th>
-                                <th>Staff</th>
+                                <th>Pegawai</th>
                                 <th>Konsumen</th>
                                 <th>Kode Cucian</th>
                                 <th>Berat</th>
                                 <th>Total</th>
+                                <th>Status</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -89,11 +91,12 @@ $i = 1;
                                     <td></td>
                                     <td><?= $transaksi['no_faktur']; ?></td>
                                     <td><?= $transaksi['tgl']; ?></td>
-                                    <td><?= $transaksi['id_pegawai']; ?></td>
+                                    <td><?= $transaksi['id_pengguna']; ?></td>
                                     <td><?= $transaksi['id_konsumen']; ?></td>
                                     <td><?= $transaksi['kd_cucian']; ?></td>
                                     <td><?= $transaksi['berat']; ?></td>
                                     <td>Rp <?= number_format($transaksi['total'], 0, ',', '.'); ?></td>
+                                    <td><?= $transaksi['lunas']; ?></td>
                                     <td align="center">
                                             <a href="transaksi-form-edit.php?no_faktur=<?= $transaksi['no_faktur']; ?>" class="btn btn-success btn-sm " title="Ubah">
                                                     <i class="fa fa-pencil-square-o"></i>
@@ -119,6 +122,7 @@ $i = 1;
 	<!-- Optional: include a polyfill for ES6 Promises for IE11 -->
 	<script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
 	<script src="../assets/js/js-hapus.js"></script>
+    <script src="../assets/js/js-logout.js"></script>
 </div>
 
 <?php

@@ -2,8 +2,8 @@
 
 require '../functions.php';
 
-$id=$_GET['id_pegawai'];
-$query = "DELETE FROM pegawai WHERE id_pegawai='$id'";
+$id=$_GET['id_pengguna'];
+$query = "DELETE FROM pengguna WHERE id_pengguna='$id'";
 
 if (mysqli_query($conn, $query)) {
 	$success = 'true';
@@ -12,7 +12,6 @@ if (mysqli_query($conn, $query)) {
     $type = 'success';
     header('location: penjaga-laundry.php?crud='.$success.'&msg='.$message.'&type='.$type.'&title='.$title);
 }
-
 else {
     echo "Error: " . $query . "<br>" . mysqli_error($conn);
 }

@@ -4,7 +4,7 @@ $db = mysqli_connect('localhost', 'root', '', 'db_laundry');
 
 $username = $_POST['username'];
 $password = $_POST['password'];
-$query = "SELECT * FROM pegawai WHERE id_pegawai='$username'";
+$query = "SELECT * FROM pengguna WHERE id_pengguna='$username'";
 $row = mysqli_query($db, $query);
 $data = mysqli_fetch_assoc($row);
 
@@ -12,7 +12,7 @@ if (isset($_POST["btn_login"])) {
     if ($password == $data['password']) {
         if ($data['jabatan'] == 'pemilik' || $data['jabatan'] == 'penjaga laundry') {
             $_SESSION['jabatan'] = 'pemilik';
-            $_SESSION['nm_pegawai'] = $data['nm_pegawai'];
+            $_SESSION['nm_pengguna'] = $data['nm_pengguna'];
             header('location:pemilik');
             //jika rememberme di klik
 		if(!empty($_POST["remember"])) {

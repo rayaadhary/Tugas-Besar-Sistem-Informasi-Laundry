@@ -27,8 +27,14 @@
     <!-- color CSS -->
     <link href="../assets/css/colors/default.css" id="theme" rel="stylesheet">
     <!-- DataTables -->
+    <link rel="stylesheet" type="text/css" href="../assets/DataTables/Buttons-1.6.1/css/buttons.dataTables.min.css" />
+      <script src="../assets/DataTables/Buttons-1.6.1/js/dataTables.buttons.min.js"></script>
+    <script src="../assets/DataTables/Buttons-1.6.1/js/buttons.print.min.js"></script>      
+    <script src="../assets/DataTables/datatables.min.js"></script>
     <link rel="stylesheet" type="text/css" href="../assets/DataTables/datatables.min.css" />
-
+  
+    <script src="../assets/js/js-hapus.js"></script>
+    <script src="../assets/js/js-logout.js"></script>
 </head>
 
 <body class="fix-header">
@@ -62,7 +68,7 @@
                     </li>
                     <li>
                         <a class="profile-pic" href="#"> <img src="../assets/images/avatar.svg" alt="user-img" width="36" class="img-circle">
-                            <b class="hidden-xs"><?= $_SESSION['nm_pegawai']; ?></b></a>
+                            <b class="hidden-xs"><?= $_SESSION['nm_pengguna']; ?></b></a>
                     </li>
                 </ul>
             </div>
@@ -81,40 +87,46 @@
                             } ?>">
                             <i class="fa fa-tachometer fa-fw" aria-hidden="true"></i>Dashboard
                         </a>
-                        <a href="../transaksi/transaksi.php" class="waves-effect 
-                            <?php if ($title == 'Transaksi') {
-                                echo 'active';
-                            } ?>">
-                            <i class="fa fa-shopping-cart fa-fw" aria-hidden="true"></i>Transaksi
-                        </a>
-                          <a href="../barang/barang.php" class="waves-effect 
-                            <?php if ($title == 'Barang') {
-                                echo 'active';
-                            } ?>">
-                            <i class="fa fa-tasks fa-fw" aria-hidden="true"></i>Barang
-                        </a>
-                        <a href="../laporan/laporan.php" class="waves-effect 
-                            <?php if ($title == 'Laporan') {
-                                echo 'active';
-                            } ?>">
-                            <i class="fa fa-file-text fa-fw" aria-hidden="true"></i>Laporan
-                        </a>
-                        <a href="../penjaga-laundry/penjaga-laundry.php" class="waves-effect 
-                            <?php if ($title == 'Penjaga-Laundry') {
-                                echo 'active';
-                            } ?>">
-                            <i class="fa fa-user fa-fw" aria-hidden="true"></i>Penjaga Laundry
-                        </a>
                         <a href="../konsumen/konsumen-laundry.php" class="waves-effect 
                             <?php if ($title == 'Konsumen') {
                                 echo 'active';
                             } ?>">
                             <i class="fa fa-user fa-fw" aria-hidden="true"></i>Konsumen
                         </a>
+                        <a href="../layanan/layanan.php" class="waves-effect 
+                            <?php if ($title == 'Layanan') {
+                                echo 'active';
+                            } ?>">
+                            <i class="fa fa-file-text fa-fw" aria-hidden="true"></i>Layanan
+                        </a>
+                        <a href="../barang/barang.php" class="waves-effect 
+                            <?php if ($title == 'Barang') {
+                                echo 'active';
+                            } ?>">
+                            <i class="fa fa-tasks fa-fw" aria-hidden="true"></i>Barang
+                        </a>
+                        <a href="../transaksi/transaksi.php" class="waves-effect 
+                            <?php if ($title == 'Transaksi') {
+                                echo 'active';
+                            } ?>">
+                            <i class="fa fa-shopping-cart fa-fw" aria-hidden="true"></i>Transaksi
+                        </a>                        
+                        <a href="../laporan/laporan.php" class="waves-effect 
+                            <?php if ($title == 'Laporan') {
+                                echo 'active';
+                            } ?>">
+                            <i class="fa fa-file-text fa-fw" aria-hidden="true"></i>Laporan
+                        </a>                                                
+                        <a href="../penjaga-laundry/penjaga-laundry.php" class="waves-effect 
+                            <?php if ($title == 'Penjaga-Laundry') {
+                                echo 'active';
+                            } ?>">
+                            <i class="fa fa-user fa-fw" aria-hidden="true"></i>Pengguna
+                        </a>
                     </li>
                 </ul>
                 <div class="center p-20">
-                    <a href="logout.php" class="btn btn-danger btn-block waves-effect waves-light">Log Out</a>
+                    <a href="logout.php" class="btn btn-danger btn-block waves-effect waves-light log-out">Log Out</a>
                 </div>
             </div>
 

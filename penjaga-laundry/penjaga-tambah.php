@@ -1,14 +1,14 @@
 <?php
 $title = 'Penjaga-Laundry';
 require '../functions.php';
-$penjaga = ambildata($conn,'SELECT * FROM pegawai');
+$penjaga = ambildata($conn,'SELECT * FROM pengguna');
 if(isset($_POST['btn-simpan'])){
-     $id_pegawai    = $_POST['id_pegawai'];
-     $nama          = $_POST['nm_pegawai'];
+     $id_pengguna    = $_POST['id_pengguna'];
+     $nama          = $_POST['nm_pengguna'];
      $telp          = $_POST['no_tlp'];
      $jabatan       = $_POST['jabatan'];
 
-    $query = "INSERT INTO pegawai (id_pegawai,nm_pegawai,no_tlp,jabatan) 
+    $query = "INSERT INTO pengguna (id_pengguna,nm_pengguna,no_tlp,jabatan) 
     values ('$id_pegawai','$nama','$telp','$jabatan')";
      
      $execute = bisa($conn,$query);
@@ -50,11 +50,11 @@ require '../layout/layout_header.php';
                 <form method="post" action="">
                     <div class="form-group">
                         <label>ID</label>
-                        <input type="text" name="id_pegawai" class="form-control">
+                        <input type="text" name="id_pengguna" class="form-control">
                     </div>
                     <div class="form-group">
                         <label>Nama Penjaga Laundry</label>
-                        <input type="text" name="nm_pegawai" class="form-control">
+                        <input type="text" name="nm_pengguna" class="form-control">
                     </div>
                     <div class="form-group">
                         <label>No Telepon</label>

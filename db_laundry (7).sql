@@ -1,9 +1,10 @@
+-- SQLBook: Code
 -- phpMyAdmin SQL Dump
 -- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 22 Jan 2023 pada 02.28
+-- Waktu pembuatan: 22 Jan 2023 pada 05.14
 -- Versi server: 10.4.22-MariaDB
 -- Versi PHP: 8.1.1
 
@@ -39,11 +40,10 @@ CREATE TABLE `barang` (
 --
 
 INSERT INTO `barang` (`kd_cucian`, `id_konsumen`, `nm_brg`, `deskripsi`) VALUES
-(1, 1, 'Jaket Kulit', 'XL, Hitam'),
-(2, 2, 'Hoodie', 'Hitam Emas'),
-(3, 3, 'Crewneck, Skinny Jeans', 'Putih '),
-(4, 4, 'Jas ', 'Merah'),
-(5, 5, 'Kaos, Celana Pendek', '');
+(6, 15, 'a', 'a'),
+(7, 16, 'a', 'a'),
+(8, 17, 'a', 'a'),
+(9, 18, 'a', 'a');
 
 -- --------------------------------------------------------
 
@@ -75,11 +75,10 @@ CREATE TABLE `konsumen` (
 --
 
 INSERT INTO `konsumen` (`id_konsumen`, `nm_konsumen`, `no_tlp`) VALUES
-(1, 'Arnold Suasanasegar', '62878962571'),
-(2, 'Kendrick Tunangan', '62856781456'),
-(3, 'Ryan Ghosting', '6287156718'),
-(4, 'Brad Prett', '625782154417'),
-(5, 'Vin Solar', '627891535178');
+(15, 'w', '0'),
+(16, 'w', '0'),
+(17, 'a', '0'),
+(18, 'a', '0');
 
 -- --------------------------------------------------------
 
@@ -93,17 +92,6 @@ CREATE TABLE `laporan` (
   `no_faktur` int(11) NOT NULL,
   `total` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data untuk tabel `laporan`
---
-
-INSERT INTO `laporan` (`id_laporan`, `tgl`, `no_faktur`, `total`) VALUES
-(1, '2022-07-22 23:07:00', 8, 14000),
-(2, '2022-07-22 23:07:00', 10, 10000),
-(3, '2022-07-22 23:07:00', 9, 10000),
-(4, '2022-07-22 23:07:00', 11, 10000),
-(5, '2022-07-22 23:08:00', 12, 10000);
 
 -- --------------------------------------------------------
 
@@ -129,31 +117,46 @@ INSERT INTO `layanan` (`id_layanan`, `nm_layanan`, `harga`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `pegawai`
+-- Struktur dari tabel `pengguna`
 --
 
-CREATE TABLE `pegawai` (
-  `id_pegawai` varchar(5) NOT NULL,
-  `nm_pegawai` varchar(30) NOT NULL,
+CREATE TABLE `pengguna` (
+  `id_pengguna` varchar(5) NOT NULL,
+  `nm_pengguna` varchar(30) NOT NULL,
   `no_tlp` varchar(13) NOT NULL,
   `jabatan` enum('pemilik','penjaga laundry') NOT NULL,
   `password` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `pegawai`
+-- Dumping data untuk tabel `pengguna`
 --
 
-INSERT INTO `pegawai` (`id_pegawai`, `nm_pegawai`, `no_tlp`, `jabatan`, `password`) VALUES
-('admin', 'admin', '', 'pemilik', 'admin'),
-('P0010', 'Lulut Firmansyah M.M.', '(+62) 821 813', 'pemilik', 'P0010'),
-('P002', 'Pardi Simanjuntak', '0421 4772 247', 'pemilik', 'P002'),
-('P003', 'Rahayu Usamah', '0718 8537 475', 'pemilik', 'P003'),
-('P004', 'Garang Kemba Kurniawan M.Farm', '020 8822 871', 'penjaga laundry', 'P004'),
-('P005', 'Endra Hendri Sitorus', '(+62) 287 672', 'pemilik', 'P005'),
-('P006', 'Siska Kusmawati', '(+62) 892 394', 'pemilik', 'P006'),
-('P007', 'Yani Nuraini', '(+62) 711 263', 'penjaga laundry', 'P007'),
-('P009', 'Legawa Dongoran', '0301 3081 201', 'penjaga laundry', 'P009');
+INSERT INTO `pengguna` (`id_pengguna`, `nm_pengguna`, `no_tlp`, `jabatan`, `password`) VALUES
+('1', 'Darmanto Prayoga', '0795 3304 477', 'pemilik', 'admin'),
+('10', 'Limar Karya Permadi', '0912 4655 961', 'penjaga laundry', 'admin'),
+('11', 'Gawati Kuswandari', '0507 0361 769', 'pemilik', 'admin'),
+('12', 'Yono Wahyudin', '0940 5981 835', 'pemilik', 'admin'),
+('13', 'Keisha Rina Mulyani S.IP', '(+62) 950 621', 'pemilik', 'admin'),
+('14', 'Salsabila Mulyani S.E.I', '0370 3665 851', 'pemilik', 'admin'),
+('15', 'Puput Usamah', '(+62) 567 593', 'pemilik', 'admin'),
+('16', 'Asirwanda Suwarno S.Kom', '(+62) 604 213', 'penjaga laundry', 'admin'),
+('18', 'Violet Pertiwi S.Psi', '022 5742 3663', 'pemilik', 'admin'),
+('2', 'Vanesa Permata', '(+62) 798 301', 'penjaga laundry', 'admin'),
+('20', 'Rini Andriani', '(+62) 904 071', 'pemilik', 'admin'),
+('21', 'Karen Mandasari S.Pd', '(+62) 475 220', 'penjaga laundry', 'admin'),
+('22', 'Gilda Nasyiah', '(+62) 852 068', 'penjaga laundry', 'admin'),
+('23', 'Padmi Namaga', '(+62) 807 144', 'pemilik', 'admin'),
+('24', 'Darsirah Narpati S.Sos', '0698 8008 395', 'penjaga laundry', 'admin'),
+('25', 'Patricia Aryani', '0203 0028 146', 'pemilik', 'admin'),
+('3', 'Marsito Anggriawan', '0751 1496 207', 'pemilik', 'admin'),
+('4', 'Damu Damu Napitupulu', '(+62) 793 595', 'penjaga laundry', 'admin'),
+('5', 'Argono Santoso S.T.', '(+62) 211 599', 'penjaga laundry', 'admin'),
+('6', 'Najib Margana Tarihoran', '(+62) 620 323', 'penjaga laundry', 'admin'),
+('7', 'Amelia Hartati', '0259 6495 333', 'pemilik', 'admin'),
+('8', 'Pranawa Wijaya', '0965 4983 903', 'penjaga laundry', 'admin'),
+('9', 'Paulin Usada S.Ked', '(+62) 800 746', 'pemilik', 'admin'),
+('admin', 'admin', '02062862962', 'pemilik', 'admin');
 
 -- --------------------------------------------------------
 
@@ -164,23 +167,12 @@ INSERT INTO `pegawai` (`id_pegawai`, `nm_pegawai`, `no_tlp`, `jabatan`, `passwor
 CREATE TABLE `transaksi` (
   `no_faktur` int(11) NOT NULL,
   `tgl` datetime NOT NULL,
-  `id_pegawai` varchar(5) NOT NULL,
+  `id_pengguna` varchar(5) NOT NULL,
   `id_konsumen` int(11) NOT NULL,
   `kd_cucian` int(11) NOT NULL,
   `total` int(11) NOT NULL,
   `lunas` enum('Y','T') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data untuk tabel `transaksi`
---
-
-INSERT INTO `transaksi` (`no_faktur`, `tgl`, `id_pegawai`, `id_konsumen`, `kd_cucian`, `total`, `lunas`) VALUES
-(8, '2022-07-22 23:02:00', 'P007', 1, 1, 14000, 'Y'),
-(9, '2022-07-22 23:02:00', 'P004', 2, 2, 10000, 'Y'),
-(10, '2022-07-22 23:01:00', 'P009', 3, 3, 10000, 'Y'),
-(11, '2022-07-22 23:04:00', 'P004', 4, 4, 10000, 'Y'),
-(12, '2022-07-22 23:05:00', 'P004', 5, 5, 10000, 'Y');
 
 --
 -- Indexes for dumped tables
@@ -221,10 +213,10 @@ ALTER TABLE `layanan`
   ADD PRIMARY KEY (`id_layanan`);
 
 --
--- Indeks untuk tabel `pegawai`
+-- Indeks untuk tabel `pengguna`
 --
-ALTER TABLE `pegawai`
-  ADD PRIMARY KEY (`id_pegawai`);
+ALTER TABLE `pengguna`
+  ADD PRIMARY KEY (`id_pengguna`);
 
 --
 -- Indeks untuk tabel `transaksi`
@@ -232,7 +224,7 @@ ALTER TABLE `pegawai`
 ALTER TABLE `transaksi`
   ADD PRIMARY KEY (`no_faktur`),
   ADD KEY `id_konsumen` (`id_konsumen`),
-  ADD KEY `id_pegawai` (`id_pegawai`),
+  ADD KEY `id_pegawai` (`id_pengguna`),
   ADD KEY `kd_cucian` (`kd_cucian`);
 
 --
@@ -243,13 +235,13 @@ ALTER TABLE `transaksi`
 -- AUTO_INCREMENT untuk tabel `barang`
 --
 ALTER TABLE `barang`
-  MODIFY `kd_cucian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `kd_cucian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT untuk tabel `konsumen`
 --
 ALTER TABLE `konsumen`
-  MODIFY `id_konsumen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_konsumen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT untuk tabel `laporan`
@@ -292,7 +284,7 @@ ALTER TABLE `laporan`
 --
 ALTER TABLE `transaksi`
   ADD CONSTRAINT `transaksi_ibfk_10` FOREIGN KEY (`kd_cucian`) REFERENCES `barang` (`kd_cucian`),
-  ADD CONSTRAINT `transaksi_ibfk_2` FOREIGN KEY (`id_pegawai`) REFERENCES `pegawai` (`id_pegawai`),
+  ADD CONSTRAINT `transaksi_ibfk_2` FOREIGN KEY (`id_pengguna`) REFERENCES `pengguna` (`id_pengguna`),
   ADD CONSTRAINT `transaksi_ibfk_9` FOREIGN KEY (`id_konsumen`) REFERENCES `konsumen` (`id_konsumen`);
 COMMIT;
 

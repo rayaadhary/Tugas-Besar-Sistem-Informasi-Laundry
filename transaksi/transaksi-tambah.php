@@ -10,60 +10,66 @@ if(isset($_POST['btn-simpan'])){
 
     $nm_barang = $_POST['nm_barang'];
     $deskripsi = $_POST['deskripsi'];
-
     $nm_konsumen = $_POST['nm_konsumen'];
     $no_tlp = $_POST['no_tlp'];
-    
-
     $tgl    = $_POST['tgl'];
-     $id_pegawai = $_POST['id_pegawai'];
-     $layanan = $_POST['layanan'];
-     $berat = $_POST['berat'];
+    $id_pengguna = $_POST['id_pengguna'];
+    $layanan = $_POST['layanan'];
+    $berat = $_POST['berat'];
     
-     if ($_POST['layanan'] == 'regular') {
-        $hrg_layanan = 5000;
-    } else if ($_POST['layanan'] == 'one_day') {
-        $hrg_layanan = 6000;
-    } else if ($_POST['layanan'] == 'express') {
-        $hrg_layanan = 7000;
-    }
+    // if ($_POST['layanan'] == 'regular') {
+    //     $hrg_layanan = 5000;
+    // } else if ($_POST['layanan'] == 'one_day') {
+    //     $hrg_layanan = 6000;
+    // } else if ($_POST['layanan'] == 'express') {
+    //     $hrg_layanan = 7000;
+    
+    // }
 
-    $total = $_POST['berat'] * $hrg_layanan;
+    $sql_layanan = ambildata($conn,'SELECT harga FROM layanan WHERE id_layanan=1');
+    $total = $_Get['berat'] * $sql_layanan;
+    $query = "INSERT INTO konsumen (nm_konsumen,no_tlp) values ('$nm_konsumen',$no_tlp)";    
+    $execute = bisa($conn,$query);
 
-
-     $query = "INSERT INTO konsumen (nm_konsumen,no_tlp) values ('$nm_konsumen',$no_tlp)";
-    //   $res = $conn->query($query);
-        $execute = bisa($conn,$query);
-
+    // Tambah data barang
    if ($execute == 1)
    {
         $id_konsumen = $conn->insert_id;
-        $query = "INSERT INTO barang (id_konsumen, nm_brg, deskripsi) values ($id_konsumen,'$nm_barang','$deskripsi')";
-        // $res = $db->query($query);
+        $query = "INSERT INTO barang (id_konsumen, nm_brg, deskripsi) values ($id_konsumen,'$nm_barang','$deskripsi')";        
         $execute = bisa($conn,$query);
         
-         if($execute == 1)
-         {    
+        // Tambah data transaksi
+        if($execute == 1)
+        {    
             $kd_cucian = $conn->insert_id;
-            $query = "INSERT INTO transaksi (tgl, id_pegawai, id_konsumen, kd_cucian, layanan, berat, total) 
-            values ('$tgl','$id_pegawai','$id_konsumen','$kd_cucian', '$layanan', '$berat', '$total')";
-            $execute = bisa($conn,$query);
-            
-       if($execute == 1){
-        $success = 'true';
-        $title = 'Berhasil';
-        $message = 'Berhasil menambahkan transaksi baru';
-        $type = 'success';
-        header('location: transaksi.php?crud='.$success.'&msg='.$message.'&type='.$type.'&title='.$title);
-    }else{
-        echo "Gagal Tambah Data";
-    }
-    
-    }
-        
+            $query = "INSERT INTO transaksi (tgl, id_pengguna, id_konsumen, kd_cucian, berat, total) 
+            values ('$tgl','$id_pengguna','$id_konsumen','$kd_cucian','$berat','$total')";
+            $execute = bisa($conn,$query);                        
+
+            // Tambah detail transaksi
+            if($execute == 1)
+            {    
+                $sql_detail_transaksi = ambilsatubaris($conn,'SELECT * FROM transaksi WHERE id_pengguna =',$id_pengguna);
+                $no_f = $sql_detail_transaksi['no_faktur'];
+                $kd_c = $sql_detail_transaksi['kd_cucian'];
+                
+                $query = "INSERT INTO detail_transaksi (no_faktur, kd_cucian, id_layanan, berat) 
+                values ('$no_f','$kd_c','$layanan','$berat')";
+                $execute = bisa($conn,$query);
+                
+                if($execute == 1){
+                $success = 'true';
+                $title = 'Berhasil';
+                $message = 'Berhasil menambahkan transaksi baru';
+                $type = 'success';
+                header('location: transaksi.php?crud='.$success.'&msg='.$message.'&type='.$type.'&title='.$title);
+                }else{
+                    echo "Gagal Tambah Data";
+                }
+            }
+        }    
    }
  }
-
 
 require '../layout/layout_header.php';
 ?>
@@ -95,11 +101,11 @@ require '../layout/layout_header.php';
                     </div>
                     <div class="form-group">
                         <label>Nama Penjaga Laundry</label>
-                        <select name="id_pegawai" class="form-control">
+                        <select name="id_pengguna" class="form-control">
                         <?php
-                                $datapegawai=getListPegawai();
-                                foreach($datapegawai as $data){
-                                    echo "<option value=\"".$data["id_pegawai"]."\">".$data["nm_pegawai"]."</option>";
+                                $datapengguna=getListPengguna();
+                                foreach($datapengguna as $data){
+                                    echo "<option value=\"".$data["id_pengguna"]."\">".$data["nm_pengguna"]."</option>";
                                 }
                             ?>                        
                         </select>
@@ -123,15 +129,19 @@ require '../layout/layout_header.php';
                     <div class="form-group">
                         <label>Layanan</label>
                         <select name="layanan" class="form-control">
-                            <option value="regular">regular</option>
-                            <option value="one_day">one day</option>
-                            <option value="express">express</option>
+                            <?php
+                                $datalayanan = getListLayanan();
+                                foreach($datalayanan as $data){
+                                    echo "<option value=\"".$data["id_layanan"]."\">".$data["nm_layanan"]."</option>";
+                                }
+                            ?>
                         </select>
                     </div>                     
                     <div class="form-group">
                         <label>Berat</label>
                         <input type="number" name="berat" class="form-control">
                     </div>
+                    
                     <div class="text-right">
                         <button type="reset" class="btn btn-danger">Reset</button>
                         <button type="submit" name="btn-simpan" class="btn btn-primary">Simpan</button>

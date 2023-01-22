@@ -3,7 +3,7 @@ $title = 'Transaksi';
 require '../functions.php';
 date_default_timezone_set("Asia/Jakarta");
 
-$penjaga = getListPegawai();
+$penjaga = getListPengguna();
 
 $nofaktur = $_GET['no_faktur'];
 $transaksi = ambilsatubaris($conn, "SELECT * FROM transaksi WHERE no_faktur = '$nofaktur'");
@@ -17,19 +17,19 @@ $tgl = Date('Y-m-d H:i');
 $layanan = ['regular', 'one_day', 'express'];
 
 if (isset($_POST['btn-simpan'])) {
-    if ($_POST['layanan'] == 'regular') {
-        $hrg_layanan = 5000;
-    } else if ($_POST['layanan'] == 'one_day') {
-        $hrg_layanan = 6000;
-    } else if ($_POST['layanan'] == 'express') {
-        $hrg_layanan = 7000;
-    }
+    // if ($_POST['layanan'] == 'regular') {
+    //     $hrg_layanan = 5000;
+    // } else if ($_POST['layanan'] == 'one_day') {
+    //     $hrg_layanan = 6000;
+    // } else if ($_POST['layanan'] == 'express') {
+    //     $hrg_layanan = 7000;
+    // }
 
     $nm_barang = $_POST['nm_brg'];
     $nm_konsumen = $_POST['nm_konsumen'];
     $no_tlp = $_POST['no_tlp'];
     $tgl = $_POST['tgl'];
-    $id_pegawai = $_POST['id_pegawai'];
+    $id_pegawai = $_POST['id_pengguna'];
     $layanan = $_POST['layanan'];
     $berat = $_POST['berat'];
     $deskripsi = $_POST['deskripsi'];
