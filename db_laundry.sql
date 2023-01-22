@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 23, 2022 at 04:04 AM
--- Server version: 10.4.22-MariaDB
--- PHP Version: 8.1.1
+-- Waktu pembuatan: 22 Jan 2023 pada 02.28
+-- Versi server: 10.4.22-MariaDB
+-- Versi PHP: 8.1.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,18 +24,18 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `barang`
+-- Struktur dari tabel `barang`
 --
 
 CREATE TABLE `barang` (
   `kd_cucian` int(11) NOT NULL,
-  `id_konsumen` int(11) DEFAULT NULL,
-  `nm_brg` text DEFAULT NULL,
-  `deskripsi` text DEFAULT NULL
+  `id_konsumen` int(11) NOT NULL,
+  `nm_brg` text NOT NULL,
+  `deskripsi` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `barang`
+-- Dumping data untuk tabel `barang`
 --
 
 INSERT INTO `barang` (`kd_cucian`, `id_konsumen`, `nm_brg`, `deskripsi`) VALUES
@@ -48,17 +48,30 @@ INSERT INTO `barang` (`kd_cucian`, `id_konsumen`, `nm_brg`, `deskripsi`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `konsumen`
+-- Struktur dari tabel `detail_transaksi`
+--
+
+CREATE TABLE `detail_transaksi` (
+  `no_faktur` int(11) DEFAULT NULL,
+  `kd_cucian` int(11) DEFAULT NULL,
+  `id_layanan` int(11) DEFAULT NULL,
+  `berat` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `konsumen`
 --
 
 CREATE TABLE `konsumen` (
   `id_konsumen` int(11) NOT NULL,
-  `nm_konsumen` varchar(30) DEFAULT NULL,
-  `no_tlp` varchar(13) DEFAULT NULL
+  `nm_konsumen` varchar(30) NOT NULL,
+  `no_tlp` varchar(13) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `konsumen`
+-- Dumping data untuk tabel `konsumen`
 --
 
 INSERT INTO `konsumen` (`id_konsumen`, `nm_konsumen`, `no_tlp`) VALUES
@@ -71,18 +84,18 @@ INSERT INTO `konsumen` (`id_konsumen`, `nm_konsumen`, `no_tlp`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `laporan`
+-- Struktur dari tabel `laporan`
 --
 
 CREATE TABLE `laporan` (
   `id_laporan` int(11) NOT NULL,
-  `tgl` datetime DEFAULT NULL,
-  `no_faktur` int(11) DEFAULT NULL,
-  `total` int(11) DEFAULT NULL
+  `tgl` datetime NOT NULL,
+  `no_faktur` int(11) NOT NULL,
+  `total` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `laporan`
+-- Dumping data untuk tabel `laporan`
 --
 
 INSERT INTO `laporan` (`id_laporan`, `tgl`, `no_faktur`, `total`) VALUES
@@ -95,23 +108,44 @@ INSERT INTO `laporan` (`id_laporan`, `tgl`, `no_faktur`, `total`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pegawai`
+-- Struktur dari tabel `layanan`
+--
+
+CREATE TABLE `layanan` (
+  `id_layanan` int(11) NOT NULL,
+  `nm_layanan` varchar(30) NOT NULL,
+  `harga` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `layanan`
+--
+
+INSERT INTO `layanan` (`id_layanan`, `nm_layanan`, `harga`) VALUES
+(1, 'regular', 6000),
+(2, 'express', 7000),
+(3, 'one day', 8000);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `pegawai`
 --
 
 CREATE TABLE `pegawai` (
   `id_pegawai` varchar(5) NOT NULL,
-  `nm_pegawai` varchar(30) DEFAULT NULL,
-  `no_tlp` varchar(13) DEFAULT NULL,
-  `jabatan` enum('pemilik','penjaga laundry') DEFAULT NULL,
-  `password` varchar(20) DEFAULT NULL
+  `nm_pegawai` varchar(30) NOT NULL,
+  `no_tlp` varchar(13) NOT NULL,
+  `jabatan` enum('pemilik','penjaga laundry') NOT NULL,
+  `password` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `pegawai`
+-- Dumping data untuk tabel `pegawai`
 --
 
 INSERT INTO `pegawai` (`id_pegawai`, `nm_pegawai`, `no_tlp`, `jabatan`, `password`) VALUES
-('admin', 'admin', NULL, 'pemilik', 'admin'),
+('admin', 'admin', '', 'pemilik', 'admin'),
 ('P0010', 'Lulut Firmansyah M.M.', '(+62) 821 813', 'pemilik', 'P0010'),
 ('P002', 'Pardi Simanjuntak', '0421 4772 247', 'pemilik', 'P002'),
 ('P003', 'Rahayu Usamah', '0718 8537 475', 'pemilik', 'P003'),
@@ -124,63 +158,76 @@ INSERT INTO `pegawai` (`id_pegawai`, `nm_pegawai`, `no_tlp`, `jabatan`, `passwor
 -- --------------------------------------------------------
 
 --
--- Table structure for table `transaksi`
+-- Struktur dari tabel `transaksi`
 --
 
 CREATE TABLE `transaksi` (
   `no_faktur` int(11) NOT NULL,
-  `tgl` datetime DEFAULT NULL,
-  `id_pegawai` varchar(5) DEFAULT NULL,
-  `id_konsumen` int(11) DEFAULT NULL,
-  `kd_cucian` int(11) DEFAULT NULL,
-  `layanan` enum('regular','one_day','express','') NOT NULL,
-  `berat` int(11) DEFAULT NULL,
-  `total` int(11) DEFAULT NULL
+  `tgl` datetime NOT NULL,
+  `id_pegawai` varchar(5) NOT NULL,
+  `id_konsumen` int(11) NOT NULL,
+  `kd_cucian` int(11) NOT NULL,
+  `total` int(11) NOT NULL,
+  `lunas` enum('Y','T') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `transaksi`
+-- Dumping data untuk tabel `transaksi`
 --
 
-INSERT INTO `transaksi` (`no_faktur`, `tgl`, `id_pegawai`, `id_konsumen`, `kd_cucian`, `layanan`, `berat`, `total`) VALUES
-(8, '2022-07-22 23:02:00', 'P007', 1, 1, 'express', 2, 14000),
-(9, '2022-07-22 23:02:00', 'P004', 2, 2, 'regular', 2, 10000),
-(10, '2022-07-22 23:01:00', 'P009', 3, 3, 'regular', 2, 10000),
-(11, '2022-07-22 23:04:00', 'P004', 4, 4, 'regular', 2, 10000),
-(12, '2022-07-22 23:05:00', 'P004', 5, 5, 'regular', 2, 10000);
+INSERT INTO `transaksi` (`no_faktur`, `tgl`, `id_pegawai`, `id_konsumen`, `kd_cucian`, `total`, `lunas`) VALUES
+(8, '2022-07-22 23:02:00', 'P007', 1, 1, 14000, 'Y'),
+(9, '2022-07-22 23:02:00', 'P004', 2, 2, 10000, 'Y'),
+(10, '2022-07-22 23:01:00', 'P009', 3, 3, 10000, 'Y'),
+(11, '2022-07-22 23:04:00', 'P004', 4, 4, 10000, 'Y'),
+(12, '2022-07-22 23:05:00', 'P004', 5, 5, 10000, 'Y');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `barang`
+-- Indeks untuk tabel `barang`
 --
 ALTER TABLE `barang`
   ADD PRIMARY KEY (`kd_cucian`),
   ADD KEY `id_konsumen` (`id_konsumen`);
 
 --
--- Indexes for table `konsumen`
+-- Indeks untuk tabel `detail_transaksi`
+--
+ALTER TABLE `detail_transaksi`
+  ADD KEY `id_layanan` (`id_layanan`),
+  ADD KEY `no_faktur` (`no_faktur`),
+  ADD KEY `kd_cucian` (`kd_cucian`);
+
+--
+-- Indeks untuk tabel `konsumen`
 --
 ALTER TABLE `konsumen`
   ADD PRIMARY KEY (`id_konsumen`);
 
 --
--- Indexes for table `laporan`
+-- Indeks untuk tabel `laporan`
 --
 ALTER TABLE `laporan`
   ADD PRIMARY KEY (`id_laporan`),
   ADD KEY `id_transaksi` (`no_faktur`);
 
 --
--- Indexes for table `pegawai`
+-- Indeks untuk tabel `layanan`
+--
+ALTER TABLE `layanan`
+  ADD PRIMARY KEY (`id_layanan`);
+
+--
+-- Indeks untuk tabel `pegawai`
 --
 ALTER TABLE `pegawai`
   ADD PRIMARY KEY (`id_pegawai`);
 
 --
--- Indexes for table `transaksi`
+-- Indeks untuk tabel `transaksi`
 --
 ALTER TABLE `transaksi`
   ADD PRIMARY KEY (`no_faktur`),
@@ -189,51 +236,59 @@ ALTER TABLE `transaksi`
   ADD KEY `kd_cucian` (`kd_cucian`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
 --
--- AUTO_INCREMENT for table `barang`
+-- AUTO_INCREMENT untuk tabel `barang`
 --
 ALTER TABLE `barang`
   MODIFY `kd_cucian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `konsumen`
+-- AUTO_INCREMENT untuk tabel `konsumen`
 --
 ALTER TABLE `konsumen`
   MODIFY `id_konsumen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `laporan`
+-- AUTO_INCREMENT untuk tabel `laporan`
 --
 ALTER TABLE `laporan`
   MODIFY `id_laporan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `transaksi`
+-- AUTO_INCREMENT untuk tabel `transaksi`
 --
 ALTER TABLE `transaksi`
   MODIFY `no_faktur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
--- Constraints for dumped tables
+-- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
 --
 
 --
--- Constraints for table `barang`
+-- Ketidakleluasaan untuk tabel `barang`
 --
 ALTER TABLE `barang`
   ADD CONSTRAINT `barang_ibfk_1` FOREIGN KEY (`id_konsumen`) REFERENCES `konsumen` (`id_konsumen`);
 
 --
--- Constraints for table `laporan`
+-- Ketidakleluasaan untuk tabel `detail_transaksi`
+--
+ALTER TABLE `detail_transaksi`
+  ADD CONSTRAINT `detail_transaksi_ibfk_1` FOREIGN KEY (`id_layanan`) REFERENCES `layanan` (`id_layanan`),
+  ADD CONSTRAINT `detail_transaksi_ibfk_2` FOREIGN KEY (`no_faktur`) REFERENCES `transaksi` (`no_faktur`),
+  ADD CONSTRAINT `detail_transaksi_ibfk_3` FOREIGN KEY (`kd_cucian`) REFERENCES `barang` (`kd_cucian`);
+
+--
+-- Ketidakleluasaan untuk tabel `laporan`
 --
 ALTER TABLE `laporan`
   ADD CONSTRAINT `laporan_ibfk_1` FOREIGN KEY (`no_faktur`) REFERENCES `transaksi` (`no_faktur`) ON DELETE CASCADE ON UPDATE NO ACTION;
 
 --
--- Constraints for table `transaksi`
+-- Ketidakleluasaan untuk tabel `transaksi`
 --
 ALTER TABLE `transaksi`
   ADD CONSTRAINT `transaksi_ibfk_10` FOREIGN KEY (`kd_cucian`) REFERENCES `barang` (`kd_cucian`),
