@@ -14,7 +14,11 @@ if (mysqli_query($conn, $query)) {
 }
 
 else {
+<<<<<<< HEAD
     echo "Error: " . $query . "<br>" . mysqli_error($conn);
+=======
+    echo "Gagal hapus data: " . $query . "<br>" . mysqli_error($conn);
+>>>>>>> c5bb42fddcdcca24ba2ce6dc0a76c2e6a7241251
 }
 mysqli_close($conn);
 

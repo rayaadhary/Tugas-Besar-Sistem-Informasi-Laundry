@@ -6,8 +6,13 @@ require '../layout/layout_header.php';
 
 if (isset($_POST['keyword'])) {
     $keyword = $_POST['keyword'];
+<<<<<<< HEAD
     $data = mysqli_query($conn, "SELECT * FROM transaksi WHERE invoice lIKE '%" . $keyword . "%' 
                                 OR tgl LIKE '%" . $keyword . "%'
+=======
+    $data = mysqli_query($conn, "SELECT * FROM transaksi WHERE invoice lIKE '%" . $keyword . "%'
+                               OR tgl LIKE '%" . $keyword . "%'
+>>>>>>> c5bb42fddcdcca24ba2ce6dc0a76c2e6a7241251
                                 OR nm_karyawan LIKE '%" . $keyword . "%'
                                 OR nm_pelanggan LIKE '%" . $keyword . "%'
                                 OR nm_menu LIKE '%" . $keyword . "%'
@@ -86,7 +91,7 @@ $i = 1;
                         <tbody>
                             <?php foreach ($data as $transaksi) : ?>
                                 <tr>
-                                    <td><?= $i++; ?></td>
+                                    <td></td>
                                     <td><?= $transaksi['no_faktur']; ?></td>
                                     <td><?= $transaksi['tgl']; ?></td>
                                     <td><?= $transaksi['id_pegawai']; ?></td>
@@ -95,10 +100,11 @@ $i = 1;
                                     <td><?= $transaksi['berat']; ?></td>
                                     <td>Rp <?= number_format($transaksi['total'], 0, ',', '.'); ?></td>
                                     <td align="center">
-                                        <div class="btn-group" role="group">
-                                            <a href="transaksi-ubah.php?id=<?= $transaksi['no_faktur']; ?>" title="Edit" class="btn btn-warning"><i class="fa fa-edit"></i></a>
-                                            <a href="transaksi-hapus.php?id=<?= $transaksi['no_faktur']; ?>" onclick="return confirm('Hapus data yang dipilih?');" title="Hapus" class="btn btn-danger"><i class="fa fa-trash"></i></a>
-                                        </div>
+                                            <a href="transaksi-form-edit.php?no_faktur=<?= $transaksi['no_faktur']; ?>" class="btn btn-success btn-sm " title="Ubah">
+                                                    <i class="fa fa-pencil-square-o"></i>
+                                                </a>
+                                            <a href="transaksi-hapus.php?no_faktur=<?= $transaksi['no_faktur'];?>"  class="btn btn-danger btn-sm delete-data">
+                                            <i class="fa fa-trash"></i></a>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
@@ -108,6 +114,16 @@ $i = 1;
             </div>
         </div>
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+	<!-- Swal -->
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9.15.2/dist/sweetalert2.all.min.js"></script>
+	<!-- Optional: include a polyfill for ES6 Promises for IE11 -->
+	<script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+	<script src="../assets/js/js-hapus.js"></script>
 </div>
 
 <?php

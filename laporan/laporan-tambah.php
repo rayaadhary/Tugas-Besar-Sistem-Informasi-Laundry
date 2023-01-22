@@ -1,4 +1,5 @@
 <?php
+<<<<<<< HEAD
 $title = 'Tambah Laporan';
 require '../functions.php';
 
@@ -9,10 +10,23 @@ $transaksi = ambildata($conn, "SELECT * FROM transaksi WHERE no_faktur NOT IN (S
 if (isset($_POST['btn-simpan'])) {
     if ($db->errno == 0) {
         $id_laporan = $_POST['id_laporan'];
+=======
+$title = 'Laporan';
+require '../functions.php';
+
+$db = dbConnect();
+date_default_timezone_set("Asia/Jakarta");
+$tgl = Date('Y-m-d H:i');
+$transaksi = ambildata($conn, "SELECT * FROM transaksi WHERE no_faktur NOT IN (SELECT no_faktur FROM laporan)");
+
+if (isset($_POST['btn-simpan'])) {
+    if ($db->errno == 0) {     
+>>>>>>> c5bb42fddcdcca24ba2ce6dc0a76c2e6a7241251
         $tgl = $_POST['tgl'];
         $no_faktur = $_POST['no_faktur'];
         $total = $_POST['total'];
 
+<<<<<<< HEAD
         $query = "INSERT INTO laporan (id_laporan,tgl,no_faktur,total) VALUES ('$id_laporan','$tgl','$no_faktur','$total')";
 
         $execute = bisa($conn, $query);
@@ -20,6 +34,19 @@ if (isset($_POST['btn-simpan'])) {
             header('location:laporan.php?msg=oke');
         } else {
             header('location:laporan.php?msg=error');
+=======
+        $query = "INSERT INTO laporan (tgl,no_faktur,total) VALUES ('$tgl','$no_faktur','$total')";
+
+        $execute = bisa($conn, $query);
+        if ($execute == 1) {
+              $success = 'true';
+        $title = 'Berhasil';
+        $message = 'Berhasil menambah laporan';
+        $type = 'success';
+        header('location: laporan.php?crud=' . $success . '&msg=' . $message . '&type=' . $type . '&title=' . $title);
+        } else {
+            echo "Gagal Tambah Data";
+>>>>>>> c5bb42fddcdcca24ba2ce6dc0a76c2e6a7241251
         }
     } else {
         echo "Gagal koneksi" . (DEVELOPMENT ? " : " . $db->connect_error : "") . "<br>";
@@ -48,10 +75,13 @@ require '../layout/layout_header.php';
             <div class="white-box">
                 <form method="post" action="">
                     <div class="form-group">
+<<<<<<< HEAD
                         <label>ID Laporan</label>
                         <input type="text" name="id_laporan" class="form-control" maxlength="5" required oninvalid="this.setCustomValidity('Silahkan masukkan id laporan')" oninput="setCustomValidity('')">
                     </div>
                     <div class="form-group">
+=======
+>>>>>>> c5bb42fddcdcca24ba2ce6dc0a76c2e6a7241251
                         <label>Tanggal</label>
                         <input type="datetime" name="tgl" class="form-control" value="<?= $tgl; ?>" readonly>
                     </div>

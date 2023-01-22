@@ -2,6 +2,7 @@
 $title = 'Transaksi';
 require '../functions.php';
 
+<<<<<<< HEAD
 
 if(isset($_POST['btn-simpan'])){
      $tgl    = $_POST['tgl'];
@@ -25,6 +26,68 @@ if(isset($_POST['btn-simpan'])){
      }else{
          echo "Gagal Tambah Data";
      }
+=======
+date_default_timezone_set("Asia/Jakarta");
+
+$tgl = Date('Y-m-d H:i');
+
+if(isset($_POST['btn-simpan'])){
+
+    $nm_barang = $_POST['nm_barang'];
+    $deskripsi = $_POST['deskripsi'];
+
+    $nm_konsumen = $_POST['nm_konsumen'];
+    $no_tlp = $_POST['no_tlp'];
+    
+
+    $tgl    = $_POST['tgl'];
+     $id_pegawai = $_POST['id_pegawai'];
+     $layanan = $_POST['layanan'];
+     $berat = $_POST['berat'];
+    
+     if ($_POST['layanan'] == 'regular') {
+        $hrg_layanan = 5000;
+    } else if ($_POST['layanan'] == 'one_day') {
+        $hrg_layanan = 6000;
+    } else if ($_POST['layanan'] == 'express') {
+        $hrg_layanan = 7000;
+    }
+
+    $total = $_POST['berat'] * $hrg_layanan;
+
+
+     $query = "INSERT INTO konsumen (nm_konsumen,no_tlp) values ('$nm_konsumen',$no_tlp)";
+    //   $res = $conn->query($query);
+        $execute = bisa($conn,$query);
+
+   if ($execute == 1)
+   {
+        $id_konsumen = $conn->insert_id;
+        $query = "INSERT INTO barang (id_konsumen, nm_brg, deskripsi) values ($id_konsumen,'$nm_barang','$deskripsi')";
+        // $res = $db->query($query);
+        $execute = bisa($conn,$query);
+        
+         if($execute == 1)
+         {    
+            $kd_cucian = $conn->insert_id;
+            $query = "INSERT INTO transaksi (tgl, id_pegawai, id_konsumen, kd_cucian, layanan, berat, total) 
+            values ('$tgl','$id_pegawai','$id_konsumen','$kd_cucian', '$layanan', '$berat', '$total')";
+            $execute = bisa($conn,$query);
+            
+       if($execute == 1){
+        $success = 'true';
+        $title = 'Berhasil';
+        $message = 'Berhasil menambahkan transaksi baru';
+        $type = 'success';
+        header('location: transaksi.php?crud='.$success.'&msg='.$message.'&type='.$type.'&title='.$title);
+    }else{
+        echo "Gagal Tambah Data";
+    }
+    
+    }
+        
+   }
+>>>>>>> c5bb42fddcdcca24ba2ce6dc0a76c2e6a7241251
  }
 
 
@@ -54,6 +117,7 @@ require '../layout/layout_header.php';
                 <form method="post" action="">
                     <div class="form-group">
                         <label>Tanggal Transaksi</label>
+<<<<<<< HEAD
                         <input type="date" name="id_pegawai" class="form-control">
                     </div>
                             <div class="form-group">
@@ -71,6 +135,49 @@ require '../layout/layout_header.php';
                             <option value="penjaga laundry">penjaga laundry</option>
                         </select>
                     </div>
+=======
+                        <input type="datetime" name="tgl" value="<?= $tgl ?>" class="form-control" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label>Nama Penjaga Laundry</label>
+                        <select name="id_pegawai" class="form-control">
+                        <?php
+                                $datapegawai=getListPegawai();
+                                foreach($datapegawai as $data){
+                                    echo "<option value=\"".$data["id_pegawai"]."\">".$data["nm_pegawai"]."</option>";
+                                }
+                            ?>                        
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Nama Konsumen</label>
+                        <input type="text" name="nm_konsumen" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>No. Telepon</label>
+                        <input type="number" name="no_tlp" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>Nama Barang</label>
+                        <textarea name="nm_barang" class="form-control"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Deskripsi</label>
+                        <textarea name="deskripsi" class="form-control"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Layanan</label>
+                        <select name="layanan" class="form-control">
+                            <option value="regular">regular</option>
+                            <option value="one_day">one day</option>
+                            <option value="express">express</option>
+                        </select>
+                    </div>                     
+                    <div class="form-group">
+                        <label>Berat</label>
+                        <input type="number" name="berat" class="form-control">
+                    </div>
+>>>>>>> c5bb42fddcdcca24ba2ce6dc0a76c2e6a7241251
                     <div class="text-right">
                         <button type="reset" class="btn btn-danger">Reset</button>
                         <button type="submit" name="btn-simpan" class="btn btn-primary">Simpan</button>

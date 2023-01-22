@@ -28,7 +28,11 @@ require '../layout/layout_header.php';
                             <table class="table" id="table">
                                 <thead>
                                     <tr>
+<<<<<<< HEAD
                                         <th>NO</th>
+=======
+                                        <th>#</th>
+>>>>>>> c5bb42fddcdcca24ba2ce6dc0a76c2e6a7241251
                                         <th>ID</th>
                                         <th>Tanggal</th>
                                         <th>No. Faktur</th>

@@ -1,9 +1,17 @@
 <?php
+<<<<<<< HEAD
 $title = 'Ubah Laporan';
 require '../functions.php';
 
 
 $id = $_GET['id'];
+=======
+$title = 'Laporan';
+require '../functions.php';
+
+
+$id = $_GET['id_laporan'];
+>>>>>>> c5bb42fddcdcca24ba2ce6dc0a76c2e6a7241251
 $laporan = ambilsatubaris($conn, "SELECT * FROM laporan WHERE id_laporan='$id'");
 $tgl = Date('Y-m-d h:i:s');
 $transaksi = ambildata($conn, "SELECT * FROM transaksi");
@@ -15,14 +23,28 @@ if (isset($_POST['btn-simpan'])) {
         $no_faktur = $_POST['no_faktur'];
         $total = $_POST['total'];
 
+<<<<<<< HEAD
         $query = "UPDATE laporan SET id_laporan='$id_laporan', tgl='$tgl', no_faktur='$no_faktur', total='$total' 
+=======
+        $query = "UPDATE laporan SET tgl='$tgl', no_faktur='$no_faktur', total='$total' 
+>>>>>>> c5bb42fddcdcca24ba2ce6dc0a76c2e6a7241251
                     WHERE id_laporan='$id'";
 
         $execute = bisa($conn, $query);
         if ($execute == 1) {
+<<<<<<< HEAD
             header('location:laporan.php?msg=oke');
         } else {
             header('location:laporan.php?msg=error');
+=======
+              $success = 'true';
+        $title = 'Berhasil';
+        $message = 'Berhasil mengubah laporan';
+        $type = 'success';
+        header('location: laporan.php?crud=' . $success . '&msg=' . $message . '&type=' . $type . '&title=' . $title);
+        } else {
+            echo "Gagal Ubah Data";
+>>>>>>> c5bb42fddcdcca24ba2ce6dc0a76c2e6a7241251
         }
     } else {
         echo "Gagal koneksi" . (DEVELOPMENT ? " : " . $db->connect_error : "") . "<br>";
@@ -51,10 +73,13 @@ require '../layout/layout_header.php';
             <div class="white-box">
                 <form method="post" action="">
                     <div class="form-group">
+<<<<<<< HEAD
                         <label>ID Laporan</label>
                         <input type="text" name="id_laporan" class="form-control" value="<?= $laporan['id_laporan']; ?>" readonly>
                     </div>
                     <div class="form-group">
+=======
+>>>>>>> c5bb42fddcdcca24ba2ce6dc0a76c2e6a7241251
                         <label>Tanggal</label>
                         <input type="datetime" name="tgl" class="form-control" value="<?= $tgl; ?>" readonly>
                     </div>
