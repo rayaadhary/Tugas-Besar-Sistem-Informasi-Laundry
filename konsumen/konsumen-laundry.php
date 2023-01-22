@@ -49,12 +49,11 @@ require '../layout/layout_header.php';
                                 
                                 <td>
                                 <!-- a href -->
-                                <a href="#" class="btn btn-success btn-sm">
+                                <a href="konsumen-form-edit.php?id_konsumen=<?php echo $row["id_konsumen"]; ?>" class="btn btn-success btn-sm" title="Ubah">
                                 <i class="fa fa-pencil-square-o"></i>
                                 </a>
                                 <!-- a href -->
-                                <a href="konsumen-hapus.php?id_konsumen=<?php echo $row["id_konsumen"];?>"  class="btn btn-danger btn-sm delete-data">
-                               
+                                <a href="konsumen-hapus.php?id_konsumen=<?php echo $row["id_konsumen"];?>"  class="btn btn-danger btn-sm delete-data">                              
                                 <i class="fa fa-trash"></i>
                                 </a>
                                 </td>

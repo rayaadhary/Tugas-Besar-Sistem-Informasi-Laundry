@@ -102,6 +102,30 @@
         })
     </script>
 <?php endif; ?>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#no_faktur").change(function() {
+            var noFaktur = $(this).val();
+            $.ajax({
+                url: 'get-transaksi.php',
+                type: 'post',
+                data: {
+                    no_faktur: noFaktur
+                },
+                async: true,
+                dataType: 'json',
+                success: function(response) {
+                    var len = response.length;
+                    $("#total").empty();
+                    for (var i = 0; i < len; i++) {
+                        var total = response[i]['total'];
+                        $("#total").append("<option value='" + total + "'> Rp " + total + "</option>");
+                    }
+                }
+            });
+        });
+    });
+</script>
 </body>
 
 </html>
