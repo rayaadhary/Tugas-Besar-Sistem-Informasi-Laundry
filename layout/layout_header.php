@@ -38,7 +38,7 @@
 </head>
 
 <body class="fix-header">
-    <?php if ($title == 'Penjaga-Laundry') { ?>
+    <?php if ($title == 'Pengguna-Laundry') { ?>
         <div class="preloader">
             <svg class="circular" viewBox="25 25 50 50">
                 <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
@@ -91,7 +91,7 @@
                             <?php if ($title == 'Konsumen') {
                                 echo 'active';
                             } ?>">
-                            <i class="fa fa-user fa-fw" aria-hidden="true"></i>Konsumen
+                            <i class="fa fa-users fa-fw" aria-hidden="true"></i>Konsumen
                         </a>
                         <a href="../layanan/layanan.php" class="waves-effect 
                             <?php if ($title == 'Layanan') {
@@ -103,7 +103,7 @@
                             <?php if ($title == 'Barang') {
                                 echo 'active';
                             } ?>">
-                            <i class="fa fa-tasks fa-fw" aria-hidden="true"></i>Barang
+                            <i class="fa fa-tshirt fa-fw" aria-hidden="true"></i>Barang
                         </a>
                         <a href="../transaksi/transaksi.php" class="waves-effect 
                             <?php if ($title == 'Transaksi') {
@@ -115,7 +115,7 @@
                             <?php if ($title == 'Laporan') {
                                 echo 'active';
                             } ?>">
-                            <i class="fa fa-file-text fa-fw" aria-hidden="true"></i>Laporan
+                            <i class="fa fa-files-o fa-fw" aria-hidden="true"></i>Laporan
                         </a>
                         <a href="../pengguna/pengguna.php" class="waves-effect 
                             <?php if ($title == 'Pengguna-Laundry') {
