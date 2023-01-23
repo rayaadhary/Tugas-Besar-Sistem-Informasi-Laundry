@@ -28,11 +28,11 @@
     <link href="../assets/css/colors/default.css" id="theme" rel="stylesheet">
     <!-- DataTables -->
     <link rel="stylesheet" type="text/css" href="../assets/DataTables/Buttons-1.6.1/css/buttons.dataTables.min.css" />
-      <script src="../assets/DataTables/Buttons-1.6.1/js/dataTables.buttons.min.js"></script>
-    <script src="../assets/DataTables/Buttons-1.6.1/js/buttons.print.min.js"></script>      
+    <script src="../assets/DataTables/Buttons-1.6.1/js/dataTables.buttons.min.js"></script>
+    <script src="../assets/DataTables/Buttons-1.6.1/js/buttons.print.min.js"></script>
     <script src="../assets/DataTables/datatables.min.js"></script>
     <link rel="stylesheet" type="text/css" href="../assets/DataTables/datatables.min.css" />
-  
+
     <script src="../assets/js/js-hapus.js"></script>
     <script src="../assets/js/js-logout.js"></script>
 </head>
@@ -110,15 +110,15 @@
                                 echo 'active';
                             } ?>">
                             <i class="fa fa-shopping-cart fa-fw" aria-hidden="true"></i>Transaksi
-                        </a>                        
+                        </a>
                         <a href="../laporan/laporan.php" class="waves-effect 
                             <?php if ($title == 'Laporan') {
                                 echo 'active';
                             } ?>">
                             <i class="fa fa-file-text fa-fw" aria-hidden="true"></i>Laporan
-                        </a>                                                
-                        <a href="../penjaga-laundry/penjaga-laundry.php" class="waves-effect 
-                            <?php if ($title == 'Penjaga-Laundry') {
+                        </a>
+                        <a href="../pengguna/pengguna.php" class="waves-effect 
+                            <?php if ($title == 'Pengguna-Laundry') {
                                 echo 'active';
                             } ?>">
                             <i class="fa fa-user fa-fw" aria-hidden="true"></i>Pengguna
@@ -126,7 +126,7 @@
                     </li>
                 </ul>
                 <div class="center p-20">
-                    <a href="logout.php" class="btn btn-danger btn-block waves-effect waves-light log-out">Log Out</a>
+                    <a href="../logout.php" class="btn btn-danger btn-block waves-effect waves-light log-out">Log Out</a>
                 </div>
             </div>
 

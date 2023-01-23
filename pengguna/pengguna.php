@@ -6,7 +6,7 @@ require '../layout/layout_header.php';
 <div class="container-fluid">
     <div class="row bg-title">
         <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-            <h4 class="page-title">Pengguna</h4>
+            <h4 class="page-title">Pengguna Laundry</h4>
         </div>
     </div>
 
@@ -49,11 +49,11 @@ require '../layout/layout_header.php';
                                             <td><?= $row['jabatan']; ?></td>
                                             <td>
                                                 <!-- a href -->
-                                                <a href="penjaga-form-edit.php?id_pengguna=<?php echo $row["id_pengguna"]; ?>" class="btn btn-success btn-sm" title="Ubah">
+                                                <a href="pengguna-form-edit.php?id_pengguna=<?php echo $row["id_pengguna"]; ?>" class="btn btn-success btn-sm" title="Ubah">
                                                     <i class="fa fa-pencil-square-o"></i>
                                                 </a>
                                                 <!-- a href -->
-                                                <a href="penjaga-hapus.php?id_pengguna=<?php echo $row["id_pengguna"];?>"  class="btn btn-danger btn-sm delete-data">
+                                                <a href="pengguna-hapus.php?id_pengguna=<?php echo $row["id_pengguna"]; ?>" class="btn btn-danger btn-sm delete-data">
                                                     <i class="fa fa-trash"></i>
                                                 </a>
                                             </td>
@@ -75,13 +75,13 @@ require '../layout/layout_header.php';
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
-	<!-- Swal -->
-	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9.15.2/dist/sweetalert2.all.min.js"></script>
-	<!-- Optional: include a polyfill for ES6 Promises for IE11 -->
-	<script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+    <!-- Swal -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9.15.2/dist/sweetalert2.all.min.js"></script>
+    <!-- Optional: include a polyfill for ES6 Promises for IE11 -->
+    <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
     <script src="../assets/js/js-hapus.js"></script>
 </div>
 <?php

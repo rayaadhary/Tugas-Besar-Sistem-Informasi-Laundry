@@ -1,27 +1,27 @@
 <?php
-$title = 'Penjaga-Laundry';
+$title = 'Pengguna-Laundry';
 require '../functions.php';
-$penjaga = ambildata($conn,'SELECT * FROM pengguna');
-if(isset($_POST['btn-simpan'])){
-     $id_pengguna    = $_POST['id_pengguna'];
-     $nama          = $_POST['nm_pengguna'];
-     $telp          = $_POST['no_tlp'];
-     $jabatan       = $_POST['jabatan'];
+$penjaga = ambildata($conn, 'SELECT * FROM pengguna');
+if (isset($_POST['btn-simpan'])) {
+    $id_pengguna    = $_POST['id_pengguna'];
+    $nama          = $_POST['nm_pengguna'];
+    $telp          = $_POST['no_tlp'];
+    $jabatan       = $_POST['jabatan'];
 
     $query = "INSERT INTO pengguna (id_pengguna,nm_pengguna,no_tlp,jabatan) 
     values ('$id_pegawai','$nama','$telp','$jabatan')";
-     
-     $execute = bisa($conn,$query);
-     if($execute == 1){
-         $success = 'true';
-         $title = 'Berhasil';
-         $message = 'Berhasil menambahkan ' .$jabatan. ' baru';
-         $type = 'success';
-         header('location: penjaga-laundry.php?crud='.$success.'&msg='.$message.'&type='.$type.'&title='.$title);
-     }else{
-         echo "Gagal Tambah Data";
-     }
- }
+
+    $execute = bisa($conn, $query);
+    if ($execute == 1) {
+        $success = 'true';
+        $title = 'Berhasil';
+        $message = 'Berhasil menambahkan ' . $jabatan . ' baru';
+        $type = 'success';
+        header('location: penjaga-laundry.php?crud=' . $success . '&msg=' . $message . '&type=' . $type . '&title=' . $title);
+    } else {
+        echo "Gagal Tambah Data";
+    }
+}
 
 
 require '../layout/layout_header.php';
