@@ -10,6 +10,7 @@ $transaksi = ambilsatubaris($conn, "SELECT * FROM transaksi WHERE no_faktur = '$
 $id_konsumen = $transaksi['id_konsumen'];
 $kd_cucian = $transaksi['kd_cucian'];
 
+$detail_transaksi = ambilsatubaris($conn, "SELECT * FROM detail_transaksi WHERE no_faktur = '$nofaktur'");
 $konsumen = ambilsatubaris($conn, "SELECT * FROM konsumen WHERE id_konsumen = '$id_konsumen'");
 $barang = ambilsatubaris($conn, "SELECT * FROM barang WHERE kd_cucian = '$kd_cucian'");
 
@@ -17,19 +18,11 @@ $tgl = Date('Y-m-d H:i');
 $layanan = ['regular', 'one_day', 'express'];
 
 if (isset($_POST['btn-simpan'])) {
-    // if ($_POST['layanan'] == 'regular') {
-    //     $hrg_layanan = 5000;
-    // } else if ($_POST['layanan'] == 'one_day') {
-    //     $hrg_layanan = 6000;
-    // } else if ($_POST['layanan'] == 'express') {
-    //     $hrg_layanan = 7000;
-    // }
-
     $nm_barang = $_POST['nm_brg'];
     $nm_konsumen = $_POST['nm_konsumen'];
     $no_tlp = $_POST['no_tlp'];
     $tgl = $_POST['tgl'];
-    $id_pegawai = $_POST['id_pengguna'];
+    $id_pengguna = $_POST['id_pengguna'];
     $layanan = $_POST['layanan'];
     $berat = $_POST['berat'];
     $deskripsi = $_POST['deskripsi'];
@@ -41,7 +34,7 @@ if (isset($_POST['btn-simpan'])) {
         $query = "UPDATE barang SET nm_brg = '$nm_barang', deskripsi = '$deskripsi' WHERE kd_cucian ='$kd_cucian'";
         $execute = bisa($conn, $query);
         if ($execute == 1) {
-            $query = "UPDATE transaksi SET tgl = '$tgl', id_pegawai = '$id_pegawai', layanan = '$layanan', berat = '$berat', total = '$total' WHERE no_faktur ='$nofaktur'";
+            $query = "UPDATE transaksi SET tgl = '$tgl', id_pengguna = '$id_pengguna', layanan = '$layanan', berat = '$berat', total = '$total' WHERE no_faktur ='$nofaktur'";
             $execute = bisa($conn, $query);
             if ($execute == 1) {
                 $success = 'true';
@@ -85,12 +78,12 @@ require "../layout/layout_header.php";
                     </div>
                     <div class="form-group">
                         <label>Nama Penjaga Laundry</label>
-                        <select name="id_pegawai" class="form-control">
+                        <select name="id_pengguna" class="form-control">
                             <?php foreach ($penjaga as $p) : ?>
-                                <?php if ($p['id_pegawai'] == $transaksi['id_pegawai']) : ?>
-                                    <option value="<?= $p['id_pegawai']; ?>" selected><?= $p['nm_pegawai']; ?></option>
+                                <?php if ($p['id_pengguna'] == $transaksi['id_pengguna']) : ?>
+                                    <option value="<?= $p['id_pengguna']; ?>" selected><?= $p['nm_pengguna']; ?></option>
                                 <?php else : ?>
-                                    <option value="<?= $p['id_pegawai']; ?>"><?= $p['nm_pegawai']; ?></option>
+                                    <option value="<?= $p['id_pengguna']; ?>"><?= $p['nm_pengguna']; ?></option>
                                 <?php endif; ?>
                             <?php endforeach; ?>
                         </select>
@@ -125,7 +118,7 @@ require "../layout/layout_header.php";
                     </div>
                     <div class="form-group">
                         <label>Berat</label>
-                        <input type="number" name="berat" value="<?= $transaksi["berat"] ?>" class="form-control">
+                        <input type="number" name="berat" value="<?= $detail_transaksi["berat"] ?>" class="form-control">
                     </div>
                     <div class="text-right">
                         <button type="reset" class="btn btn-danger">Reset</button>

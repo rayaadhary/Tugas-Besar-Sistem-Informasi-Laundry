@@ -3,19 +3,20 @@ $title = 'Transaksi';
 require '../functions.php';
 require '../layout/layout_header.php';
 
-
 if (isset($_POST['keyword'])) {
     $keyword = $_POST['keyword'];
-    $data = mysqli_query($conn, "SELECT * FROM transaksi WHERE invoice lIKE '%" . $keyword . "%'
-                               OR tgl LIKE '%" . $keyword . "%'
-                                OR nm_karyawan LIKE '%" . $keyword . "%'
-                                OR nm_pelanggan LIKE '%" . $keyword . "%'
-                                OR nm_menu LIKE '%" . $keyword . "%'
-                                OR harga LIKE '%" . $keyword . "%'
-                                OR jumlah LIKE '%" . $keyword . "%'
+    $data = mysqli_query($conn, "SELECT * FROM transaksi 
+                                JOIN pengguna ON `transaksi`.`id_pengguna` = `pengguna`.`id_pengguna`
+                                JOIN konsumen ON `transaksi`.`id_konsumen` = `konsumen`.`id_konsumen`
+                                WHERE invoice lIKE '%" . $keyword . "%'
+                                OR tgl LIKE '%" . $keyword . "%'
+                                OR nm_pengguna LIKE '%" . $keyword . "%'
+                                OR nm_konsumen  LIKE '%" . $keyword . "%'                                
                                 OR total LIKE '%" . $keyword . "%'");
 } else {
-    $data = mysqli_query($conn, "SELECT * FROM transaksi");
+    $data = mysqli_query($conn, "SELECT * FROM transaksi
+                        JOIN pengguna ON `transaksi`.`id_pengguna` = `pengguna`.`id_pengguna`
+                        JOIN konsumen ON `transaksi`.`id_konsumen` = `konsumen`.`id_konsumen`");
 }
 
 $i = 1;
@@ -79,7 +80,6 @@ $i = 1;
                                 <th>Pegawai</th>
                                 <th>Konsumen</th>
                                 <th>Kode Cucian</th>
-                                <th>Berat</th>
                                 <th>Total</th>
                                 <th>Status</th>
                                 <th>Aksi</th>
@@ -91,17 +91,24 @@ $i = 1;
                                     <td></td>
                                     <td><?= $transaksi['no_faktur']; ?></td>
                                     <td><?= $transaksi['tgl']; ?></td>
-                                    <td><?= $transaksi['id_pengguna']; ?></td>
-                                    <td><?= $transaksi['id_konsumen']; ?></td>
+                                    <td><?= $transaksi['nm_pengguna']; ?></td>
+                                    <td><?= $transaksi['nm_konsumen']; ?></td>
                                     <td><?= $transaksi['kd_cucian']; ?></td>
-                                    <td><?= $transaksi['berat']; ?></td>
                                     <td>Rp <?= number_format($transaksi['total'], 0, ',', '.'); ?></td>
-                                    <td><?= $transaksi['lunas']; ?></td>
+                                    <td>
+                                        <?php
+                                        if ($transaksi['lunas'] == 'Y') {
+                                            echo 'Lunas';
+                                        } else {
+                                            echo 'Belum Lunas';
+                                        }
+                                        ?>
+                                    </td>
                                     <td align="center">
-                                            <a href="transaksi-form-edit.php?no_faktur=<?= $transaksi['no_faktur']; ?>" class="btn btn-success btn-sm " title="Ubah">
-                                                    <i class="fa fa-pencil-square-o"></i>
-                                                </a>
-                                            <a href="transaksi-hapus.php?no_faktur=<?= $transaksi['no_faktur'];?>"  class="btn btn-danger btn-sm delete-data">
+                                        <a href="transaksi-form-edit.php?no_faktur=<?= $transaksi['no_faktur']; ?>" class="btn btn-success btn-sm " title="Ubah">
+                                            <i class="fa fa-pencil-square-o"></i>
+                                        </a>
+                                        <a href="transaksi-hapus.php?no_faktur=<?= $transaksi['no_faktur']; ?>" class="btn btn-danger btn-sm delete-data">
                                             <i class="fa fa-trash"></i></a>
                                     </td>
                                 </tr>
@@ -114,14 +121,14 @@ $i = 1;
     </div>
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
-	<!-- Swal -->
-	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9.15.2/dist/sweetalert2.all.min.js"></script>
-	<!-- Optional: include a polyfill for ES6 Promises for IE11 -->
-	<script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
-	<script src="../assets/js/js-hapus.js"></script>
+    <!-- Swal -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9.15.2/dist/sweetalert2.all.min.js"></script>
+    <!-- Optional: include a polyfill for ES6 Promises for IE11 -->
+    <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+    <script src="../assets/js/js-hapus.js"></script>
     <script src="../assets/js/js-logout.js"></script>
 </div>
 
