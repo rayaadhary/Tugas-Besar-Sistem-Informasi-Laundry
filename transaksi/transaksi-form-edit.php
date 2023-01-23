@@ -4,18 +4,16 @@ require '../functions.php';
 date_default_timezone_set("Asia/Jakarta");
 
 $penjaga = getListPengguna();
-
+$datalayanan = getListLayanan();
 $nofaktur = $_GET['no_faktur'];
 $transaksi = ambilsatubaris($conn, "SELECT * FROM transaksi WHERE no_faktur = '$nofaktur'");
 $id_konsumen = $transaksi['id_konsumen'];
 $kd_cucian = $transaksi['kd_cucian'];
-
 $detail_transaksi = ambilsatubaris($conn, "SELECT * FROM detail_transaksi WHERE no_faktur = '$nofaktur'");
 $konsumen = ambilsatubaris($conn, "SELECT * FROM konsumen WHERE id_konsumen = '$id_konsumen'");
 $barang = ambilsatubaris($conn, "SELECT * FROM barang WHERE kd_cucian = '$kd_cucian'");
 
 $tgl = Date('Y-m-d H:i');
-$layanan = ['regular', 'one_day', 'express'];
 
 if (isset($_POST['btn-simpan'])) {
     $nm_barang = $_POST['nm_brg'];
@@ -26,7 +24,9 @@ if (isset($_POST['btn-simpan'])) {
     $layanan = $_POST['layanan'];
     $berat = $_POST['berat'];
     $deskripsi = $_POST['deskripsi'];
-    $total = $_POST['berat'] * $hrg_layanan;
+    $sql = ambilsatubaris($conn, "SELECT * FROM layanan WHERE id_layanan= '$layanan'");
+    $hrg_layanan = $sql['harga'];
+    $total = $berat * $hrg_layanan;
 
     $query = "UPDATE konsumen SET nm_konsumen = '$nm_konsumen', no_tlp = '$no_tlp' WHERE id_konsumen ='$id_konsumen'";
     $execute = bisa($conn, $query);
@@ -34,16 +34,20 @@ if (isset($_POST['btn-simpan'])) {
         $query = "UPDATE barang SET nm_brg = '$nm_barang', deskripsi = '$deskripsi' WHERE kd_cucian ='$kd_cucian'";
         $execute = bisa($conn, $query);
         if ($execute == 1) {
-            $query = "UPDATE transaksi SET tgl = '$tgl', id_pengguna = '$id_pengguna', layanan = '$layanan', berat = '$berat', total = '$total' WHERE no_faktur ='$nofaktur'";
+            $query = "UPDATE transaksi SET tgl = '$tgl', id_pengguna = '$id_pengguna', total = '$total' WHERE no_faktur ='$nofaktur'";
             $execute = bisa($conn, $query);
             if ($execute == 1) {
-                $success = 'true';
-                $title = 'Berhasil';
-                $message = 'Berhasil mengubah transaksi';
-                $type = 'success';
-                header('location: transaksi.php?crud=' . $success . '&msg=' . $message . '&type=' . $type . '&title=' . $title);
-            } else {
-                echo "Gagal Ubah Data";
+                $query = "UPDATE detail_transaksi SET id_layanan = '$layanan', berat = '$berat' WHERE no_faktur ='$nofaktur'";
+                $execute = bisa($conn, $query);
+                if ($execute == 1) {
+                    $success = 'true';
+                    $title = 'Berhasil';
+                    $message = 'Berhasil mengubah transaksi';
+                    $type = 'success';
+                    header('location: transaksi.php?crud=' . $success . '&msg=' . $message . '&type=' . $type . '&title=' . $title);
+                } else {
+                    echo "Gagal Ubah Data";
+                }
             }
         }
     }
@@ -106,12 +110,12 @@ require "../layout/layout_header.php";
                     </div>
                     <div class="form-group">
                         <label>Layanan</label>
-                        <select name="layanan" class="form-control">
-                            <?php foreach ($layanan as $key) : ?>
-                                <?php if ($key == $transaksi['layanan']) : ?>
-                                    <option value="<?= $key ?>" selected><?= $key ?></option>
+                        <select name="layanan" id="layanan" class="form-control">
+                            <?php foreach ($datalayanan as $key) : ?>
+                                <?php if ($key['id_layanan'] == $detail_transaksi['id_layanan']) : ?>
+                                    <option value="<?= $key['id_layanan'] ?>" selected><?= $key['nm_layanan'] ?> - Rp <?= $key['harga'] ?></option>
                                 <?php else : ?>
-                                    <option value="<?= $key ?>"><?= $key ?></option>
+                                    <option value="<?= $key['id_layanan'] ?>"><?= $key['nm_layanan'] ?>- Rp <?= $key['harga'] ?></option>
                                 <?php endif; ?>
                             <?php endforeach; ?>
                         </select>
