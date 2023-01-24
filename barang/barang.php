@@ -37,7 +37,7 @@ require '../layout/layout_header.php';
                             ?>
                             <tr>
                                 <td></td>
-                                <td><?= $row['kd_cucian']; ?></td>
+                                <td><?= $row['kd_barang']; ?></td>
                                 <td><?= $row['nm_brg']; ?></td>
                                 <td><?= $row['deskripsi']; ?></td>
                             </tr>

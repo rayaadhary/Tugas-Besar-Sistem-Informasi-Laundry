@@ -79,7 +79,7 @@ $i = 1;
                                 <th>Tanggal</th>
                                 <th>Pegawai</th>
                                 <th>Konsumen</th>
-                                <th>Kode Cucian</th>
+                                <th>Kode Barang</th>
                                 <th>Total</th>
                                 <th>Status</th>
                                 <th>Aksi</th>
@@ -93,7 +93,7 @@ $i = 1;
                                     <td><?= $transaksi['tgl']; ?></td>
                                     <td><?= $transaksi['nm_pengguna']; ?></td>
                                     <td><?= $transaksi['nm_konsumen']; ?></td>
-                                    <td><?= $transaksi['kd_cucian']; ?></td>
+                                    <td><?= $transaksi['kd_barang']; ?></td>
                                     <td>Rp <?= number_format($transaksi['total'], 0, ',', '.'); ?></td>
                                     <td>
                                         <?php

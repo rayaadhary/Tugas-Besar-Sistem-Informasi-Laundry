@@ -8,10 +8,10 @@ $datalayanan = getListLayanan();
 $nofaktur = $_GET['no_faktur'];
 $transaksi = ambilsatubaris($conn, "SELECT * FROM transaksi WHERE no_faktur = '$nofaktur'");
 $id_konsumen = $transaksi['id_konsumen'];
-$kd_cucian = $transaksi['kd_cucian'];
+$kd_barang = $transaksi['kd_barang'];
 $detail_transaksi = ambilsatubaris($conn, "SELECT * FROM detail_transaksi WHERE no_faktur = '$nofaktur'");
 $konsumen = ambilsatubaris($conn, "SELECT * FROM konsumen WHERE id_konsumen = '$id_konsumen'");
-$barang = ambilsatubaris($conn, "SELECT * FROM barang WHERE kd_cucian = '$kd_cucian'");
+$barang = ambilsatubaris($conn, "SELECT * FROM barang WHERE kd_barang = '$kd_barang'");
 
 $tgl = Date('Y-m-d H:i');
 
@@ -31,7 +31,7 @@ if (isset($_POST['btn-simpan'])) {
     $query = "UPDATE konsumen SET nm_konsumen = '$nm_konsumen', no_tlp = '$no_tlp' WHERE id_konsumen ='$id_konsumen'";
     $execute = bisa($conn, $query);
     if ($execute == 1) {
-        $query = "UPDATE barang SET nm_brg = '$nm_barang', deskripsi = '$deskripsi' WHERE kd_cucian ='$kd_cucian'";
+        $query = "UPDATE barang SET nm_brg = '$nm_barang', deskripsi = '$deskripsi' WHERE kd_barang ='$kd_barang'";
         $execute = bisa($conn, $query);
         if ($execute == 1) {
             $query = "UPDATE transaksi SET tgl = '$tgl', id_pengguna = '$id_pengguna', total = '$total' WHERE no_faktur ='$nofaktur'";

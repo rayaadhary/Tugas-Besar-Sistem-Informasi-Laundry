@@ -32,17 +32,17 @@ if (isset($_POST['btn-simpan'])) {
 
         // Tambah data transaksi
         if ($execute == 1) {
-            $kd_cucian = $conn->insert_id;
-            $query2 = "INSERT INTO transaksi (tgl, id_pengguna, id_konsumen, kd_cucian, total) 
-            values ('$tgl','$id_pengguna','$id_konsumen','$kd_cucian','$total')";
+            $kd_barang = $conn->insert_id;
+            $query2 = "INSERT INTO transaksi (tgl, id_pengguna, id_konsumen, kd_barang, total) 
+            values ('$tgl','$id_pengguna','$id_konsumen','$kd_barang','$total')";
             $execute = bisa($conn, $query2);
 
             // Tambah detail transaksi
             if ($execute == 1) {
                 $no_faktur = $conn->insert_id;
-                $kd_cucian = $conn->insert_id;
-                $query3 = "INSERT INTO detail_transaksi (no_faktur, kd_cucian, id_layanan, berat) 
-                values ('$no_faktur','$kd_cucian','$layanan','$berat')";
+                $kd_barang = $conn->insert_id;
+                $query3 = "INSERT INTO detail_transaksi (no_faktur, kd_barang, id_layanan, berat) 
+                values ('$no_faktur','$kd_barang','$layanan','$berat')";
                 $execute = bisa($conn, $query3);
 
                 if ($execute == 1) {
@@ -128,6 +128,7 @@ require '../layout/layout_header.php';
                     <div class="form-group">
                         <label>Berat</label>
                         <input type="number" name="berat" class="form-control">
+                        <!-- <?php var_dump($query3)?> -->
                     </div>
                     <div class="text-right">
                         <button type="reset" class="btn btn-danger">Reset</button>

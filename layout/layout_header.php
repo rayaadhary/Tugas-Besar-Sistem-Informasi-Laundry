@@ -81,7 +81,7 @@
                 </div>
                 <ul class="nav" id="side-menu">
                     <li style="padding: 70px 0 0;">
-                        <a href="../pemilik/index.php" class="waves-effect 
+                        <a href="../dashboard/index.php" class="waves-effect 
                             <?php if ($title == 'Dashboard') {
                                 echo 'active';
                             } ?>">
