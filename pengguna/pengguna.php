@@ -15,7 +15,7 @@ require '../layout/layout_header.php';
             <div class="white-box">
                 <div class="row">
                     <div class="col-md-6">
-                        <a href="penjaga-tambah.php" class="btn btn-primary box-title"><i class="fa fa-plus fa-fw"></i> Tambah</a>
+                        <a href="pengguna-tambah.php" class="btn btn-primary box-title"><i class="fa fa-plus fa-fw"></i> Tambah</a>
                     </div>
                 </div>
                 <?php

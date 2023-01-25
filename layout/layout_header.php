@@ -103,7 +103,7 @@
                             <?php if ($title == 'Barang') {
                                 echo 'active';
                             } ?>">
-                            <i class="fa fa-tshirt fa-fw" aria-hidden="true"></i>Barang
+                            <i class="fa fa-tasks fa-fw" aria-hidden="true"></i>Barang
                         </a>
                         <a href="../transaksi/transaksi.php" class="waves-effect 
                             <?php if ($title == 'Transaksi') {

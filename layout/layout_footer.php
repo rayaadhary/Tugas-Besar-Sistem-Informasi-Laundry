@@ -29,108 +29,109 @@
 
 <script src="../assets/DataTables/datatables.min.js"></script>
 
-    <link rel="stylesheet" type="text/css" href="../assets/DataTables/Buttons-1.6.1/css/buttons.dataTables.min.css" />
-    <script src="../assets/DataTables/Buttons-1.6.1/js/dataTables.buttons.min.js"></script>
-    <script src="../assets/DataTables/Buttons-1.6.1/js/buttons.print.min.js"></script>
-    <!-- Swal -->
-	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9.15.2/dist/sweetalert2.all.min.js"></script>
-	<!-- Optional: include a polyfill for ES6 Promises for IE11 -->
-	<script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
-	
-   
-    <!-- Custom Theme JavaScript -->
+<link rel="stylesheet" type="text/css" href="../assets/DataTables/Buttons-1.6.1/css/buttons.dataTables.min.css" />
+<script src="../assets/DataTables/Buttons-1.6.1/js/dataTables.buttons.min.js"></script>
+<script src="../assets/DataTables/Buttons-1.6.1/js/buttons.print.min.js"></script>
+<!-- Swal -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9.15.2/dist/sweetalert2.all.min.js"></script>
+<!-- Optional: include a polyfill for ES6 Promises for IE11 -->
+<script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+
+
+<!-- Custom Theme JavaScript -->
 <script src="../assets/js/dashboard1.js"></script>
 <script src="../assets/js/custom.min.js"></script>
 <script src="../assets/js/js-hapus.js"></script>
 <script src="../assets/js/js-logout.js"></script>
 <script src="../assets/plugins/bower_components/toast-master/js/jquery.toast.js"></script>
+
 <script>
     var title = document.title;
     $('#btn_hapus').on('click', () => {
         return confirm('Yakin Menghapus data ?');
     });
-   if (title == "Laporan" || title == "Transaksi") {
+    if (title == "Laporan" || title == "Transaksi") {
         $(document).ready(function() {
-        $('[data-toggle="tooltip"]').tooltip();
-        var t = $('#table').DataTable({
-            "columnDefs": [{
-                "searchable": false,
-                "orderable": false,
-                "targets": 0
-            }],
-            "order": [
-                [1, 'asc']
-            ],
-             dom: 'Bfrtip',
-            buttons: [
-            'print'
-            ],
-            "language": {
-                "sProcessing": "Sedang memproses ...",
-                "lengthMenu": "Tampilkan _MENU_ data per halaman",
-                "zeroRecord": "Maaf data tidak tersedia",
-                "info": "Menampilkan _PAGE_ halaman dari _PAGES_ halaman",
-                "infoEmpty": "Tidak ada data yang tersedia",
-                "infoFiltered": "(difilter dari _MAX_ total data)",
-                "sSearch": "Cari",
-                "oPaginate": {
-                    "sFirst": "Pertama",
-                    "sPrevious": "Sebelumnya",
-                    "sNext": "Selanjutnya",
-                    "sLast": "Terakhir"
-                }
-            },
-            
-        });
-        t.on('order.dt search.dt', function() {
-            t.column(0, {
-                search: 'applied',
-                order: 'applied'
-            }).nodes().each(function(cell, i) {
-                cell.innerHTML = i + 1;
-            });
-        }).draw();
+            $('[data-toggle="tooltip"]').tooltip();
+            var t = $('#table').DataTable({
+                "columnDefs": [{
+                    "searchable": false,
+                    "orderable": false,
+                    "targets": 0
+                }],
+                "order": [
+                    [1, 'asc']
+                ],
+                dom: 'Bfrtip',
+                buttons: [
+                    'print'
+                ],
+                "language": {
+                    "sProcessing": "Sedang memproses ...",
+                    "lengthMenu": "Tampilkan _MENU_ data per halaman",
+                    "zeroRecord": "Maaf data tidak tersedia",
+                    "info": "Menampilkan _PAGE_ halaman dari _PAGES_ halaman",
+                    "infoEmpty": "Tidak ada data yang tersedia",
+                    "infoFiltered": "(difilter dari _MAX_ total data)",
+                    "sSearch": "Cari",
+                    "oPaginate": {
+                        "sFirst": "Pertama",
+                        "sPrevious": "Sebelumnya",
+                        "sNext": "Selanjutnya",
+                        "sLast": "Terakhir"
+                    }
+                },
 
-    });
+            });
+            t.on('order.dt search.dt', function() {
+                t.column(0, {
+                    search: 'applied',
+                    order: 'applied'
+                }).nodes().each(function(cell, i) {
+                    cell.innerHTML = i + 1;
+                });
+            }).draw();
+
+        });
     } else {
-         $(document).ready(function() {
-        $('[data-toggle="tooltip"]').tooltip();
-        var t = $('#table').DataTable({
-            "columnDefs": [{
-                "searchable": false,
-                "orderable": false,
-                "targets": 0
-            }],
-            "order": [
-                [1, 'asc']
-            ],
-            "language": {
-                "sProcessing": "Sedang memproses ...",
-                "lengthMenu": "Tampilkan _MENU_ data per halaman",
-                "zeroRecord": "Maaf data tidak tersedia",
-                "info": "Menampilkan _PAGE_ halaman dari _PAGES_ halaman",
-                "infoEmpty": "Tidak ada data yang tersedia",
-                "infoFiltered": "(difilter dari _MAX_ total data)",
-                "sSearch": "Cari",
-                "oPaginate": {
-                    "sFirst": "Pertama",
-                    "sPrevious": "Sebelumnya",
-                    "sNext": "Selanjutnya",
-                    "sLast": "Terakhir"
-                }
-            },
-            
-        });
-        t.on('order.dt search.dt', function() {
-            t.column(0, {
-                search: 'applied',
-                order: 'applied'
-            }).nodes().each(function(cell, i) {
-                cell.innerHTML = i + 1;
-            });
-        }).draw();
+        $(document).ready(function() {
+            $('[data-toggle="tooltip"]').tooltip();
+            var t = $('#table').DataTable({
+                "columnDefs": [{
+                    "searchable": false,
+                    "orderable": false,
+                    "targets": 0
+                }],
+                "order": [
+                    [1, 'asc']
+                ],
+                "language": {
+                    "sProcessing": "Sedang memproses ...",
+                    "lengthMenu": "Tampilkan _MENU_ data per halaman",
+                    "zeroRecord": "Maaf data tidak tersedia",
+                    "info": "Menampilkan _PAGE_ halaman dari _PAGES_ halaman",
+                    "infoEmpty": "Tidak ada data yang tersedia",
+                    "infoFiltered": "(difilter dari _MAX_ total data)",
+                    "sSearch": "Cari",
+                    "oPaginate": {
+                        "sFirst": "Pertama",
+                        "sPrevious": "Sebelumnya",
+                        "sNext": "Selanjutnya",
+                        "sLast": "Terakhir"
+                    }
+                },
 
-    });
+            });
+            t.on('order.dt search.dt', function() {
+                t.column(0, {
+                    search: 'applied',
+                    order: 'applied'
+                }).nodes().each(function(cell, i) {
+                    cell.innerHTML = i + 1;
+                });
+            }).draw();
+
+        });
     }
     $('#btn-refresh').on('click', () => {
         $('#ic-refresh').addClass('fa-spin');
@@ -165,6 +166,7 @@
         })
     </script>
 <?php endif; ?>
+
 <script type="text/javascript">
     $(document).ready(function() {
         $("#no_faktur").change(function() {

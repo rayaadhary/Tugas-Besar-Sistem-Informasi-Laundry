@@ -9,11 +9,29 @@ require '../layout/layout_header.php';
             <h4 class="page-title">Dashboard</h4>
         </div>
     </div>
-
     <div class="row">
         <div class="col-lg-4 col-sm-6 col-xs-12">
             <div class="white-box analytics-info">
-                <h3 class="box-title">Pegawai</h3>
+                <h3 class="box-title">Transaksi</h3>
+                <ul class="list-inline two-part">
+                    <li>
+                        <div id="sparklinedash2"></div>
+                    </li>
+                    <li class="text-right"><i class="ti-arrow-up text-purple"></i>
+                        <span class="counter text-purple">
+                            <?php
+                            $query = "SELECT COUNT(no_faktur) FROM transaksi";
+                            $result = ambilsatubaris($conn, $query);
+                            ?>
+                            <?= $result['COUNT(no_faktur)']; ?>
+                        </span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-lg-4 col-sm-6 col-xs-12">
+            <div class="white-box analytics-info">
+                <h3 class="box-title">Pengguna</h3>
                 <ul class="list-inline two-part">
                     <li>
                         <div id="sparklinedash"></div>
@@ -25,25 +43,6 @@ require '../layout/layout_header.php';
                             $result = ambilsatubaris($conn, $query);
                             ?>
                             <?= $result['COUNT(id_pengguna)']; ?>
-                        </span>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div class="col-lg-4 col-sm-6 col-xs-12">
-            <div class="white-box analytics-info">
-                <h3 class="box-title">Konsumen</h3>
-                <ul class="list-inline two-part">
-                    <li>
-                        <div id="sparklinedash2"></div>
-                    </li>
-                    <li class="text-right"><i class="ti-arrow-up text-purple"></i>
-                        <span class="counter text-purple">
-                            <?php
-                            $query = "SELECT COUNT(id_konsumen) FROM konsumen";
-                            $result = ambilsatubaris($conn, $query);
-                            ?>
-                            <?= $result['COUNT(id_konsumen)']; ?>
                         </span>
                     </li>
                 </ul>

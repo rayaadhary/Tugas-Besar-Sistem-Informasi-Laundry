@@ -20,11 +20,11 @@ if (isset($_POST['btn-simpan'])) {
 
         $execute = bisa($conn, $query);
         if ($execute == 1) {
-              $success = 'true';
-        $title = 'Berhasil';
-        $message = 'Berhasil mengubah laporan';
-        $type = 'success';
-        header('location: laporan.php?crud=' . $success . '&msg=' . $message . '&type=' . $type . '&title=' . $title);
+            $success = 'true';
+            $title = 'Berhasil';
+            $message = 'Berhasil mengubah laporan';
+            $type = 'success';
+            header('location: laporan.php?crud=' . $success . '&msg=' . $message . '&type=' . $type . '&title=' . $title);
         } else {
             echo "Gagal Ubah Data";
         }
@@ -60,22 +60,23 @@ require '../layout/layout_header.php';
                     </div>
                     <div class="form-group">
                         <label>No. Faktur</label>
-                        <select id="no_faktur" name="no_faktur" class="form-control">
+                        <select name="no_faktur" class="form-control">
                             <?php foreach ($transaksi as $t) : ?>
                                 <?php if ($t['no_faktur'] == $laporan['no_faktur']) : ?>
                                     <option value="<?= $t['no_faktur']; ?>" selected><?= $t['no_faktur']; ?></option>
                                 <?php else : ?>
-                                    <?php $transaksi2 = ambildata($conn, "SELECT * FROM transaksi WHERE no_faktur NOT IN (SELECT no_faktur FROM laporan)"); ?>
+                                    <!-- <?php $transaksi2 = ambildata($conn, "SELECT * FROM transaksi WHERE no_faktur NOT IN (SELECT no_faktur FROM laporan)"); ?>
                                     <?php foreach ($transaksi2 as $t2) : ?>
                                         <option value="<?= $t2['no_faktur']; ?>"><?= $t2['no_faktur']; ?></option>
-                                    <?php endforeach; ?>
+                                    <?php endforeach; ?> -->
+                                    <option value="<?= $t['no_faktur']; ?>"><?= $t['no_faktur']; ?></option>
                                 <?php endif; ?>
                             <?php endforeach; ?>
                         </select>
                     </div>
                     <div class="form-group">
                         <label>Total</label>
-                        <select id="total" name="total" class="form-control">
+                        <select name="total" class="form-control">
                             <?php foreach ($transaksi as $t) : ?>
                                 <?php if ($t['total'] == $laporan['total']) : ?>
                                     <option value="<?= $t['total']; ?>" selected>Rp <?= $t['total']; ?></option>

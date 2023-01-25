@@ -8,7 +8,7 @@ $tgl = Date('Y-m-d H:i');
 $transaksi = ambildata($conn, "SELECT * FROM transaksi WHERE no_faktur NOT IN (SELECT no_faktur FROM laporan)");
 
 if (isset($_POST['btn-simpan'])) {
-    if ($db->errno == 0) {     
+    if ($db->errno == 0) {
         $tgl = $_POST['tgl'];
         $no_faktur = $_POST['no_faktur'];
         $total = $_POST['total'];
@@ -17,11 +17,11 @@ if (isset($_POST['btn-simpan'])) {
 
         $execute = bisa($conn, $query);
         if ($execute == 1) {
-              $success = 'true';
-        $title = 'Berhasil';
-        $message = 'Berhasil menambah laporan';
-        $type = 'success';
-        header('location: laporan.php?crud=' . $success . '&msg=' . $message . '&type=' . $type . '&title=' . $title);
+            $success = 'true';
+            $title = 'Berhasil';
+            $message = 'Berhasil menambah laporan';
+            $type = 'success';
+            header('location: laporan.php?crud=' . $success . '&msg=' . $message . '&type=' . $type . '&title=' . $title);
         } else {
             echo "Gagal Tambah Data";
         }
@@ -66,7 +66,7 @@ require '../layout/layout_header.php';
                     </div>
                     <div class="form-group">
                         <label>Total</label>
-                        <select id="total" name="total" class="form-control">
+                        <select id="total" name="total" class="form-control" disabled>
                             <option value=""></option>
                             <?php foreach ($transaksi as $t) : ?>
                                 <option value="<?= $t['total']; ?>">Rp <?= $t['total']; ?></option>

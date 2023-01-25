@@ -1,12 +1,11 @@
--- SQLBook: Code
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Waktu pembuatan: 22 Jan 2023 pada 05.14
--- Versi server: 10.4.22-MariaDB
--- Versi PHP: 8.1.1
+-- Host: localhost:3306
+-- Generation Time: Jan 25, 2023 at 03:14 PM
+-- Server version: 10.4.18-MariaDB
+-- PHP Version: 8.0.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -25,43 +24,70 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `barang`
+-- Table structure for table `barang`
 --
 
 CREATE TABLE `barang` (
-  `kd_cucian` int(11) NOT NULL,
+  `kd_barang` int(11) NOT NULL,
   `id_konsumen` int(11) NOT NULL,
   `nm_brg` text NOT NULL,
   `deskripsi` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `barang`
+-- Dumping data for table `barang`
 --
 
-INSERT INTO `barang` (`kd_cucian`, `id_konsumen`, `nm_brg`, `deskripsi`) VALUES
+INSERT INTO `barang` (`kd_barang`, `id_konsumen`, `nm_brg`, `deskripsi`) VALUES
 (6, 15, 'a', 'a'),
 (7, 16, 'a', 'a'),
 (8, 17, 'a', 'a'),
-(9, 18, 'a', 'a');
+(9, 18, 'a', 'a'),
+(10, 19, 'a', 'a'),
+(11, 20, 'a', 'a'),
+(12, 21, 'a', 'a'),
+(13, 22, 'a', 'a'),
+(14, 23, 'a', 'a'),
+(15, 24, 'a', 'a'),
+(16, 25, 'a', 'a'),
+(17, 28, 'a', 'a'),
+(18, 29, 'a', 'a'),
+(19, 30, 'z', 'z'),
+(20, 31, 'z', 'z'),
+(21, 32, 'z', 'z'),
+(22, 33, 'z', 'z'),
+(23, 34, 'z', 'z'),
+(24, 35, 'z', 'z'),
+(29, 40, 's', 's'),
+(30, 41, 'y', 'y'),
+(32, 43, 'hh', 'hh');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `detail_transaksi`
+-- Table structure for table `detail_transaksi`
 --
 
 CREATE TABLE `detail_transaksi` (
   `no_faktur` int(11) DEFAULT NULL,
-  `kd_cucian` int(11) DEFAULT NULL,
-  `id_layanan` int(11) DEFAULT NULL,
+  `kd_barang` int(11) DEFAULT NULL,
+  `id_layanan` int(11) NOT NULL,
   `berat` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `detail_transaksi`
+--
+
+INSERT INTO `detail_transaksi` (`no_faktur`, `kd_barang`, `id_layanan`, `berat`) VALUES
+(18, 18, 2, 2),
+(19, 19, 2, 2),
+(21, 21, 3, 2);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `konsumen`
+-- Table structure for table `konsumen`
 --
 
 CREATE TABLE `konsumen` (
@@ -71,19 +97,39 @@ CREATE TABLE `konsumen` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `konsumen`
+-- Dumping data for table `konsumen`
 --
 
 INSERT INTO `konsumen` (`id_konsumen`, `nm_konsumen`, `no_tlp`) VALUES
 (15, 'w', '0'),
 (16, 'w', '0'),
 (17, 'a', '0'),
-(18, 'a', '0');
+(18, 'a', '0'),
+(19, 'a', '0'),
+(20, 'a', '0'),
+(21, 'a', '76'),
+(22, 'a', '76'),
+(23, 'a', '76'),
+(24, 'a', '76'),
+(25, 'a', '76'),
+(26, 'a', '76'),
+(27, 'a', '76'),
+(28, 'a', '76'),
+(29, 'a', '76'),
+(30, 'z', '76'),
+(31, 'z', '76'),
+(32, 'z', '76'),
+(33, 'z', '76'),
+(34, 'z', '76'),
+(35, 'z', '76'),
+(40, 's', '76'),
+(41, 'y', '666'),
+(43, 'yayan', '76');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `laporan`
+-- Table structure for table `laporan`
 --
 
 CREATE TABLE `laporan` (
@@ -93,10 +139,17 @@ CREATE TABLE `laporan` (
   `total` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `laporan`
+--
+
+INSERT INTO `laporan` (`id_laporan`, `tgl`, `no_faktur`, `total`) VALUES
+(6, '2023-01-25 21:07:00', 13, 40000);
+
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `layanan`
+-- Table structure for table `layanan`
 --
 
 CREATE TABLE `layanan` (
@@ -106,18 +159,19 @@ CREATE TABLE `layanan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `layanan`
+-- Dumping data for table `layanan`
 --
 
 INSERT INTO `layanan` (`id_layanan`, `nm_layanan`, `harga`) VALUES
 (1, 'regular', 6000),
 (2, 'express', 7000),
-(3, 'one day', 8000);
+(3, 'one day', 8000),
+(4, 'v', 5000);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `pengguna`
+-- Table structure for table `pengguna`
 --
 
 CREATE TABLE `pengguna` (
@@ -129,7 +183,7 @@ CREATE TABLE `pengguna` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `pengguna`
+-- Dumping data for table `pengguna`
 --
 
 INSERT INTO `pengguna` (`id_pengguna`, `nm_pengguna`, `no_tlp`, `jabatan`, `password`) VALUES
@@ -161,7 +215,7 @@ INSERT INTO `pengguna` (`id_pengguna`, `nm_pengguna`, `no_tlp`, `jabatan`, `pass
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `transaksi`
+-- Table structure for table `transaksi`
 --
 
 CREATE TABLE `transaksi` (
@@ -169,121 +223,137 @@ CREATE TABLE `transaksi` (
   `tgl` datetime NOT NULL,
   `id_pengguna` varchar(5) NOT NULL,
   `id_konsumen` int(11) NOT NULL,
-  `kd_cucian` int(11) NOT NULL,
+  `kd_barang` int(11) NOT NULL,
   `total` int(11) NOT NULL,
   `lunas` enum('Y','T') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `transaksi`
+--
+
+INSERT INTO `transaksi` (`no_faktur`, `tgl`, `id_pengguna`, `id_konsumen`, `kd_barang`, `total`, `lunas`) VALUES
+(13, '2023-01-22 13:22:38', '1', 16, 6, 40000, 'Y'),
+(18, '2023-01-23 20:17:00', '10', 40, 29, 14000, 'Y'),
+(19, '2023-01-23 20:17:00', '10', 41, 30, 14000, 'Y'),
+(21, '2023-01-25 21:10:00', '10', 43, 32, 16000, 'Y');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indeks untuk tabel `barang`
+-- Indexes for table `barang`
 --
 ALTER TABLE `barang`
-  ADD PRIMARY KEY (`kd_cucian`),
+  ADD PRIMARY KEY (`kd_barang`),
   ADD KEY `id_konsumen` (`id_konsumen`);
 
 --
--- Indeks untuk tabel `detail_transaksi`
+-- Indexes for table `detail_transaksi`
 --
 ALTER TABLE `detail_transaksi`
-  ADD KEY `id_layanan` (`id_layanan`),
   ADD KEY `no_faktur` (`no_faktur`),
-  ADD KEY `kd_cucian` (`kd_cucian`);
+  ADD KEY `kd_cucian` (`kd_barang`),
+  ADD KEY `id_layanan` (`id_layanan`);
 
 --
--- Indeks untuk tabel `konsumen`
+-- Indexes for table `konsumen`
 --
 ALTER TABLE `konsumen`
   ADD PRIMARY KEY (`id_konsumen`);
 
 --
--- Indeks untuk tabel `laporan`
+-- Indexes for table `laporan`
 --
 ALTER TABLE `laporan`
   ADD PRIMARY KEY (`id_laporan`),
   ADD KEY `id_transaksi` (`no_faktur`);
 
 --
--- Indeks untuk tabel `layanan`
+-- Indexes for table `layanan`
 --
 ALTER TABLE `layanan`
   ADD PRIMARY KEY (`id_layanan`);
 
 --
--- Indeks untuk tabel `pengguna`
+-- Indexes for table `pengguna`
 --
 ALTER TABLE `pengguna`
   ADD PRIMARY KEY (`id_pengguna`);
 
 --
--- Indeks untuk tabel `transaksi`
+-- Indexes for table `transaksi`
 --
 ALTER TABLE `transaksi`
   ADD PRIMARY KEY (`no_faktur`),
   ADD KEY `id_konsumen` (`id_konsumen`),
   ADD KEY `id_pegawai` (`id_pengguna`),
-  ADD KEY `kd_cucian` (`kd_cucian`);
+  ADD KEY `kd_cucian` (`kd_barang`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `barang`
+-- AUTO_INCREMENT for table `barang`
 --
 ALTER TABLE `barang`
-  MODIFY `kd_cucian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `kd_barang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
--- AUTO_INCREMENT untuk tabel `konsumen`
+-- AUTO_INCREMENT for table `konsumen`
 --
 ALTER TABLE `konsumen`
-  MODIFY `id_konsumen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id_konsumen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
--- AUTO_INCREMENT untuk tabel `laporan`
+-- AUTO_INCREMENT for table `laporan`
 --
 ALTER TABLE `laporan`
-  MODIFY `id_laporan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_laporan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT untuk tabel `transaksi`
+-- AUTO_INCREMENT for table `layanan`
+--
+ALTER TABLE `layanan`
+  MODIFY `id_layanan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `transaksi`
 --
 ALTER TABLE `transaksi`
-  MODIFY `no_faktur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `no_faktur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
--- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
+-- Constraints for dumped tables
 --
 
 --
--- Ketidakleluasaan untuk tabel `barang`
+-- Constraints for table `barang`
 --
 ALTER TABLE `barang`
   ADD CONSTRAINT `barang_ibfk_1` FOREIGN KEY (`id_konsumen`) REFERENCES `konsumen` (`id_konsumen`);
 
 --
--- Ketidakleluasaan untuk tabel `detail_transaksi`
+-- Constraints for table `detail_transaksi`
 --
 ALTER TABLE `detail_transaksi`
-  ADD CONSTRAINT `detail_transaksi_ibfk_1` FOREIGN KEY (`id_layanan`) REFERENCES `layanan` (`id_layanan`),
   ADD CONSTRAINT `detail_transaksi_ibfk_2` FOREIGN KEY (`no_faktur`) REFERENCES `transaksi` (`no_faktur`),
-  ADD CONSTRAINT `detail_transaksi_ibfk_3` FOREIGN KEY (`kd_cucian`) REFERENCES `barang` (`kd_cucian`);
+  ADD CONSTRAINT `detail_transaksi_ibfk_4` FOREIGN KEY (`id_layanan`) REFERENCES `layanan` (`id_layanan`),
+  ADD CONSTRAINT `detail_transaksi_ibfk_5` FOREIGN KEY (`kd_barang`) REFERENCES `barang` (`kd_barang`);
 
 --
--- Ketidakleluasaan untuk tabel `laporan`
+-- Constraints for table `laporan`
 --
 ALTER TABLE `laporan`
   ADD CONSTRAINT `laporan_ibfk_1` FOREIGN KEY (`no_faktur`) REFERENCES `transaksi` (`no_faktur`) ON DELETE CASCADE ON UPDATE NO ACTION;
 
 --
--- Ketidakleluasaan untuk tabel `transaksi`
+-- Constraints for table `transaksi`
 --
 ALTER TABLE `transaksi`
-  ADD CONSTRAINT `transaksi_ibfk_10` FOREIGN KEY (`kd_cucian`) REFERENCES `barang` (`kd_cucian`),
+  ADD CONSTRAINT `transaksi_ibfk_10` FOREIGN KEY (`kd_barang`) REFERENCES `barang` (`kd_barang`),
   ADD CONSTRAINT `transaksi_ibfk_2` FOREIGN KEY (`id_pengguna`) REFERENCES `pengguna` (`id_pengguna`),
   ADD CONSTRAINT `transaksi_ibfk_9` FOREIGN KEY (`id_konsumen`) REFERENCES `konsumen` (`id_konsumen`);
 COMMIT;
