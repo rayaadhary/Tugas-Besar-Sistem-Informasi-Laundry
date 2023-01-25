@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jan 25, 2023 at 03:14 PM
+-- Generation Time: Jan 25, 2023 at 05:02 PM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 8.0.3
 
@@ -60,7 +60,8 @@ INSERT INTO `barang` (`kd_barang`, `id_konsumen`, `nm_brg`, `deskripsi`) VALUES
 (24, 35, 'z', 'z'),
 (29, 40, 's', 's'),
 (30, 41, 'y', 'y'),
-(32, 43, 'hh', 'hh');
+(32, 43, 'hh', 'hh'),
+(33, 44, 'z', 'z');
 
 -- --------------------------------------------------------
 
@@ -82,7 +83,8 @@ CREATE TABLE `detail_transaksi` (
 INSERT INTO `detail_transaksi` (`no_faktur`, `kd_barang`, `id_layanan`, `berat`) VALUES
 (18, 18, 2, 2),
 (19, 19, 2, 2),
-(21, 21, 3, 2);
+(21, 21, 3, 2),
+(22, 22, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -124,7 +126,8 @@ INSERT INTO `konsumen` (`id_konsumen`, `nm_konsumen`, `no_tlp`) VALUES
 (35, 'z', '76'),
 (40, 's', '76'),
 (41, 'y', '666'),
-(43, 'yayan', '76');
+(43, 'yayan', '76'),
+(44, 'z', '76');
 
 -- --------------------------------------------------------
 
@@ -144,7 +147,7 @@ CREATE TABLE `laporan` (
 --
 
 INSERT INTO `laporan` (`id_laporan`, `tgl`, `no_faktur`, `total`) VALUES
-(6, '2023-01-25 21:07:00', 13, 40000);
+(6, '2023-01-25 04:28:24', 13, 40000);
 
 -- --------------------------------------------------------
 
@@ -165,8 +168,7 @@ CREATE TABLE `layanan` (
 INSERT INTO `layanan` (`id_layanan`, `nm_layanan`, `harga`) VALUES
 (1, 'regular', 6000),
 (2, 'express', 7000),
-(3, 'one day', 8000),
-(4, 'v', 5000);
+(3, 'one day', 8000);
 
 -- --------------------------------------------------------
 
@@ -175,7 +177,7 @@ INSERT INTO `layanan` (`id_layanan`, `nm_layanan`, `harga`) VALUES
 --
 
 CREATE TABLE `pengguna` (
-  `id_pengguna` varchar(5) NOT NULL,
+  `id_pengguna` int(11) NOT NULL,
   `nm_pengguna` varchar(30) NOT NULL,
   `no_tlp` varchar(13) NOT NULL,
   `jabatan` enum('pemilik','penjaga laundry') NOT NULL,
@@ -187,30 +189,31 @@ CREATE TABLE `pengguna` (
 --
 
 INSERT INTO `pengguna` (`id_pengguna`, `nm_pengguna`, `no_tlp`, `jabatan`, `password`) VALUES
-('1', 'Darmanto Prayoga', '0795 3304 477', 'pemilik', 'admin'),
-('10', 'Limar Karya Permadi', '0912 4655 961', 'penjaga laundry', 'admin'),
-('11', 'Gawati Kuswandari', '0507 0361 769', 'pemilik', 'admin'),
-('12', 'Yono Wahyudin', '0940 5981 835', 'pemilik', 'admin'),
-('13', 'Keisha Rina Mulyani S.IP', '(+62) 950 621', 'pemilik', 'admin'),
-('14', 'Salsabila Mulyani S.E.I', '0370 3665 851', 'pemilik', 'admin'),
-('15', 'Puput Usamah', '(+62) 567 593', 'pemilik', 'admin'),
-('16', 'Asirwanda Suwarno S.Kom', '(+62) 604 213', 'penjaga laundry', 'admin'),
-('18', 'Violet Pertiwi S.Psi', '022 5742 3663', 'pemilik', 'admin'),
-('2', 'Vanesa Permata', '(+62) 798 301', 'penjaga laundry', 'admin'),
-('20', 'Rini Andriani', '(+62) 904 071', 'pemilik', 'admin'),
-('21', 'Karen Mandasari S.Pd', '(+62) 475 220', 'penjaga laundry', 'admin'),
-('22', 'Gilda Nasyiah', '(+62) 852 068', 'penjaga laundry', 'admin'),
-('23', 'Padmi Namaga', '(+62) 807 144', 'pemilik', 'admin'),
-('24', 'Darsirah Narpati S.Sos', '0698 8008 395', 'penjaga laundry', 'admin'),
-('25', 'Patricia Aryani', '0203 0028 146', 'pemilik', 'admin'),
-('3', 'Marsito Anggriawan', '0751 1496 207', 'pemilik', 'admin'),
-('4', 'Damu Damu Napitupulu', '(+62) 793 595', 'penjaga laundry', 'admin'),
-('5', 'Argono Santoso S.T.', '(+62) 211 599', 'penjaga laundry', 'admin'),
-('6', 'Najib Margana Tarihoran', '(+62) 620 323', 'penjaga laundry', 'admin'),
-('7', 'Amelia Hartati', '0259 6495 333', 'pemilik', 'admin'),
-('8', 'Pranawa Wijaya', '0965 4983 903', 'penjaga laundry', 'admin'),
-('9', 'Paulin Usada S.Ked', '(+62) 800 746', 'pemilik', 'admin'),
-('admin', 'admin', '02062862962', 'pemilik', 'admin');
+(1, 'Darmanto Prayoga', '0795 3304 477', 'pemilik', 'adminn'),
+(2, 'Vanesa Permata', '(+62) 798 301', 'penjaga laundry', 'admin'),
+(3, 'Marsito Anggriawan', '0751 1496 207', 'pemilik', 'admin'),
+(4, 'Damu Damu Napitupulu', '(+62) 793 595', 'penjaga laundry', 'admin'),
+(5, 'Argono Santoso S.T.', '(+62) 211 599', 'penjaga laundry', 'admin'),
+(6, 'Najib Margana Tarihoran', '(+62) 620 323', 'penjaga laundry', 'admin'),
+(7, 'Amelia Hartati', '0259 6495 333', 'pemilik', 'admin'),
+(8, 'Pranawa Wijaya', '0965 4983 903', 'penjaga laundry', 'admin'),
+(9, 'Paulin Usada S.Ked', '(+62) 800 746', 'pemilik', 'admin'),
+(10, 'Limar Karya Permadi', '0912 4655 961', 'penjaga laundry', 'admin'),
+(11, 'Gawati Kuswandari', '0507 0361 769', 'pemilik', 'admin'),
+(12, 'Yono Wahyudin', '0940 5981 835', 'pemilik', 'admin'),
+(13, 'Keisha Rina Mulyani S.IP', '(+62) 950 621', 'pemilik', 'admin'),
+(14, 'Salsabila Mulyani S.E.I', '0370 3665 851', 'pemilik', 'admin'),
+(15, 'Puput Usamah', '(+62) 567 593', 'pemilik', 'admin'),
+(16, 'Asirwanda Suwarno S.Kom', '(+62) 604 213', 'penjaga laundry', 'admin'),
+(18, 'Violet Pertiwi S.Psi', '022 5742 3663', 'pemilik', 'admin'),
+(20, 'Rini Andriani', '(+62) 904 071', 'pemilik', 'admin'),
+(21, 'Karen Mandasari S.Pd', '(+62) 475 220', 'penjaga laundry', 'admin'),
+(22, 'Gilda Nasyiah', '(+62) 852 068', 'penjaga laundry', 'admin'),
+(23, 'Padmi Namaga', '(+62) 807 144', 'pemilik', 'admin'),
+(24, 'Darsirah Narpati S.Sos', '0698 8008 395', 'penjaga laundry', 'admin'),
+(25, 'Patricia Aryani', '0203 0028 146', 'pemilik', 'admin'),
+(26, 'admin', '02062862962', 'pemilik', 'admin'),
+(55, 'mama', '76', 'pemilik', 'tes');
 
 -- --------------------------------------------------------
 
@@ -221,7 +224,7 @@ INSERT INTO `pengguna` (`id_pengguna`, `nm_pengguna`, `no_tlp`, `jabatan`, `pass
 CREATE TABLE `transaksi` (
   `no_faktur` int(11) NOT NULL,
   `tgl` datetime NOT NULL,
-  `id_pengguna` varchar(5) NOT NULL,
+  `id_pengguna` int(11) NOT NULL,
   `id_konsumen` int(11) NOT NULL,
   `kd_barang` int(11) NOT NULL,
   `total` int(11) NOT NULL,
@@ -233,10 +236,11 @@ CREATE TABLE `transaksi` (
 --
 
 INSERT INTO `transaksi` (`no_faktur`, `tgl`, `id_pengguna`, `id_konsumen`, `kd_barang`, `total`, `lunas`) VALUES
-(13, '2023-01-22 13:22:38', '1', 16, 6, 40000, 'Y'),
-(18, '2023-01-23 20:17:00', '10', 40, 29, 14000, 'Y'),
-(19, '2023-01-23 20:17:00', '10', 41, 30, 14000, 'Y'),
-(21, '2023-01-25 21:10:00', '10', 43, 32, 16000, 'Y');
+(13, '2023-01-22 13:22:38', 1, 16, 6, 40000, 'Y'),
+(18, '2023-01-23 20:17:00', 10, 40, 29, 14000, 'Y'),
+(19, '2023-01-23 20:17:00', 10, 41, 30, 14000, 'Y'),
+(21, '2023-01-25 21:10:00', 10, 43, 32, 16000, 'Y'),
+(22, '2023-01-25 22:16:00', 10, 44, 33, 7000, 'Y');
 
 --
 -- Indexes for dumped tables
@@ -299,19 +303,19 @@ ALTER TABLE `transaksi`
 -- AUTO_INCREMENT for table `barang`
 --
 ALTER TABLE `barang`
-  MODIFY `kd_barang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `kd_barang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT for table `konsumen`
 --
 ALTER TABLE `konsumen`
-  MODIFY `id_konsumen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `id_konsumen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT for table `laporan`
 --
 ALTER TABLE `laporan`
-  MODIFY `id_laporan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_laporan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `layanan`
@@ -320,10 +324,16 @@ ALTER TABLE `layanan`
   MODIFY `id_layanan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT for table `pengguna`
+--
+ALTER TABLE `pengguna`
+  MODIFY `id_pengguna` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+
+--
 -- AUTO_INCREMENT for table `transaksi`
 --
 ALTER TABLE `transaksi`
-  MODIFY `no_faktur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `no_faktur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- Constraints for dumped tables
@@ -354,7 +364,7 @@ ALTER TABLE `laporan`
 --
 ALTER TABLE `transaksi`
   ADD CONSTRAINT `transaksi_ibfk_10` FOREIGN KEY (`kd_barang`) REFERENCES `barang` (`kd_barang`),
-  ADD CONSTRAINT `transaksi_ibfk_2` FOREIGN KEY (`id_pengguna`) REFERENCES `pengguna` (`id_pengguna`),
+  ADD CONSTRAINT `transaksi_ibfk_11` FOREIGN KEY (`id_pengguna`) REFERENCES `pengguna` (`id_pengguna`),
   ADD CONSTRAINT `transaksi_ibfk_9` FOREIGN KEY (`id_konsumen`) REFERENCES `konsumen` (`id_konsumen`);
 COMMIT;
 
