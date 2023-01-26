@@ -10,11 +10,8 @@ $data = mysqli_fetch_assoc($row);
 
 if (isset($_POST["btn_login"])) {
 	if ($password == $data['password']) {
-		// if ($data['jabatan'] == 'pemilik' || $data['jabatan'] == 'penjaga laundry') {
-			$_SESSION['jabatan'] = 'pemilik' || 'penjaga laundry';
+			$_SESSION['jabatan'] = $data['jabatan'];
 			$_SESSION['nm_pengguna'] = $data['nm_pengguna'];
-			$_SESSION['id_pengguna'] = $data['id_pengguna'];
-			$_SESSION['role'] = $data['jabatan'];
 			header('location:dashboard');
 			//jika rememberme di klik
 			if (!empty($_POST["remember"])) {
@@ -29,7 +26,6 @@ if (isset($_POST["btn_login"])) {
 					setcookie("password", "");
 				}
 			}
-		// }
 	} else {
 		header('location:index.php?msg=1');
 	}

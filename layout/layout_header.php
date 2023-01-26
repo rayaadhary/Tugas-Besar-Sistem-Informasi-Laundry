@@ -118,7 +118,7 @@
                             <i class="fa fa-files-o fa-fw" aria-hidden="true"></i>Laporan
                         </a>
                         <?php 
-                            if ($_SESSION['jabatan'] == 'pemilik') {
+                            if ($_SESSION['role'] == 'pemilik') {
                         ?>
                         <a href="../pengguna/pengguna.php" class="waves-effect 
                             <?php if ($title == 'Pengguna-Laundry') {
