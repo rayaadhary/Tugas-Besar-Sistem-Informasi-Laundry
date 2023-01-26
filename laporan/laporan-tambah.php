@@ -67,7 +67,7 @@ require '../layout/layout_header.php';
                     </div>
                     <div class="form-group">
                         <label>Total</label>
-                        <select id="total" name="total" class="form-control" disabled>
+                        <select id="total" name="total" class="form-control">
                             <option value=""></option>
                             <?php foreach ($transaksi as $t) : ?>
                                 <option value="<?= $t['total']; ?>">Rp <?= $t['total']; ?></option>
