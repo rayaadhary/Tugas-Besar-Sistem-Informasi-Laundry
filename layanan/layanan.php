@@ -1,4 +1,5 @@
 <?php
+session_start();
 $title = 'layanan';
 require '../functions.php';
 require '../layout/layout_header.php';

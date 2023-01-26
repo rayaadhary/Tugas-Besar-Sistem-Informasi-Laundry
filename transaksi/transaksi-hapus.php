@@ -1,4 +1,5 @@
 <?php
+session_start();
 require '../functions.php';
 
 $no_faktur = $_GET['no_faktur'];

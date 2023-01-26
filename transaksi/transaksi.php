@@ -1,4 +1,5 @@
 <?php
+session_start();
 $title = 'Transaksi';
 require '../functions.php';
 require '../layout/layout_header.php';

@@ -1,4 +1,5 @@
 <?php
+session_start();
 require '../functions.php';
 $no_faktur = 0;
 if (isset($_POST['no_faktur'])) {

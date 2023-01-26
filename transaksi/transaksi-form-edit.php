@@ -1,4 +1,5 @@
 <?php
+session_start();
 $title = 'Transaksi';
 require '../functions.php';
 date_default_timezone_set("Asia/Jakarta");

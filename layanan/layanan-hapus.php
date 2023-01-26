@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 require '../functions.php';
 
 $id_layanan=$_GET['id_layanan'];

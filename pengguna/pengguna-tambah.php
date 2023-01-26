@@ -1,4 +1,5 @@
 <?php
+session_start();
 $title = 'Pengguna-Laundry';
 require '../functions.php';
 // $penjaga = ambildata($conn, 'SELECT * FROM pengguna');
