@@ -117,12 +117,16 @@
                             } ?>">
                             <i class="fa fa-files-o fa-fw" aria-hidden="true"></i>Laporan
                         </a>
+                        <?php 
+                            if ($_SESSION['jabatan'] == 'pemilik') {
+                        ?>
                         <a href="../pengguna/pengguna.php" class="waves-effect 
                             <?php if ($title == 'Pengguna-Laundry') {
                                 echo 'active';
                             } ?>">
                             <i class="fa fa-user fa-fw" aria-hidden="true"></i>Pengguna
                         </a>
+                        <?php } ?>
                     </li>
                 </ul>
                 <div class="center p-20">

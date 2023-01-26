@@ -56,7 +56,7 @@
 					$msg = $_GET['msg'];
 					if ($msg == 1) {
 				?>
-						<div class="alert alert-success" role="alert">Password salah!</div>
+						<div class="alert alert-success" role="alert">Username atau  Password salah!</div>
 					<?php
 					} else if ($msg == 2) {
 					?>

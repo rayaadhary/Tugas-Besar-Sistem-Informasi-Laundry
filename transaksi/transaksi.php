@@ -4,21 +4,9 @@ $title = 'Transaksi';
 require '../functions.php';
 require '../layout/layout_header.php';
 
-if (isset($_POST['keyword'])) {
-    $keyword = $_POST['keyword'];
-    $data = mysqli_query($conn, "SELECT * FROM transaksi 
-                                JOIN pengguna ON `transaksi`.`id_pengguna` = `pengguna`.`id_pengguna`
-                                JOIN konsumen ON `transaksi`.`id_konsumen` = `konsumen`.`id_konsumen`
-                                WHERE invoice lIKE '%" . $keyword . "%'
-                                OR tgl LIKE '%" . $keyword . "%'
-                                OR nm_pengguna LIKE '%" . $keyword . "%'
-                                OR nm_konsumen  LIKE '%" . $keyword . "%'                                
-                                OR total LIKE '%" . $keyword . "%'");
-} else {
-    $data = mysqli_query($conn, "SELECT * FROM transaksi
+$data = mysqli_query($conn, "SELECT * FROM transaksi
                         JOIN pengguna ON `transaksi`.`id_pengguna` = `pengguna`.`id_pengguna`
                         JOIN konsumen ON `transaksi`.`id_konsumen` = `konsumen`.`id_konsumen`");
-}
 
 $i = 1;
 ?>
@@ -65,12 +53,6 @@ $i = 1;
                         <a href="transaksi-tambah.php" class="btn btn-primary box-title" title="Tambah Data"><i class="fa fa-plus fa-fw"></i> Tambah</a>
                     </div>
                 </div>
-                <?php
-                if (isset($_POST['keyword'])) {
-                    $keyword = $_POST['keyword'];
-                    echo "<strong>Hasil Pencarian : " . $keyword . "</strong>";
-                }
-                ?>
                 <div class="table-responsive">
                     <table class="table thead-dark" id="table">
                         <thead>
