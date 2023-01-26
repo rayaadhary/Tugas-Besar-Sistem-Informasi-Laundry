@@ -22,7 +22,7 @@ if (isset($_POST['btn-simpan'])) {
     $hrg_layanan = $sql['harga'];
     $total = $berat * $hrg_layanan;
 
-    $query = "INSERT INTO konsumen (nm_konsumen,no_tlp) values ('$nm_konsumen',$no_tlp)";
+    $query = "INSERT INTO konsumen (nm_konsumen,no_tlp) values ('$nm_konsumen','$no_tlp')";
     $execute = bisa($conn, $query);
 
     // Tambah data barang
