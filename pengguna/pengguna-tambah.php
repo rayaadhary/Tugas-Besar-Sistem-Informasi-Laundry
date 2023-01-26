@@ -59,7 +59,7 @@ require '../layout/layout_header.php';
                     </div>
                     <div class="form-group">
                         <label>No Telepon</label>
-                        <input type="text" name="no_tlp" class="form-control">
+                        <input type="number" name="no_tlp" class="form-control">
                     </div>
                     <div class="form-group">
                         <label>Jabatan</label>

@@ -57,7 +57,7 @@ require '../layout/layout_header.php';
                         <label>Nama layanan</label>
                         <input type="text" name="nm_layanan" class="form-control" value="<?= $edit['nm_layanan'] ?>">
                         <div class="form-group">
-                            <label>Harga</label>
+                            <label>Harga (Rp)</label>
                             <input type="text" name="harga" class="form-control" value="<?= $edit['harga'] ?>">
                         </div>
                         <div class="text-right">

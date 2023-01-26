@@ -8,7 +8,7 @@ $db = dbConnect();
 $transaksi = ambildata($conn, "SELECT * FROM layanan");
 
 if (isset($_POST['btn-simpan'])) {
-    if ($db->errno == 0) {     
+    if ($db->errno == 0) {
         $id_layanan = $_POST['id_layanan'];
         $nm_layanan = $_POST['nm_layanan'];
         $harga = $_POST['harga'];
@@ -17,11 +17,11 @@ if (isset($_POST['btn-simpan'])) {
 
         $execute = bisa($conn, $query);
         if ($execute == 1) {
-              $success = 'true';
-        $title = 'Berhasil';
-        $message = 'Berhasil menambah Layanan';
-        $type = 'success';
-        header('location: layanan.php?crud=' . $success . '&msg=' . $message . '&type=' . $type . '&title=' . $title);
+            $success = 'true';
+            $title = 'Berhasil';
+            $message = 'Berhasil menambah Layanan';
+            $type = 'success';
+            header('location: layanan.php?crud=' . $success . '&msg=' . $message . '&type=' . $type . '&title=' . $title);
         } else {
             echo "Gagal Tambah Data";
         }
@@ -51,19 +51,14 @@ require '../layout/layout_header.php';
         <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
             <div class="white-box">
                 <form method="post" action="">
-                <div class="form-group">
-                        <label>ID Layanan</label>
-                        <input type="text" name="id_layanan" class="form-control">
-                    </div>
-                <div class="form-group">
+                    <div class="form-group">
                         <label>Nama Layanan</label>
                         <input type="text" name="nm_layanan" class="form-control">
                     </div>
                     <div class="form-group">
-                        <label>Harga</label>
+                        <label>Harga (Rp)</label>
                         <input type="text" name="harga" class="form-control">
                     </div>
-                 
                     <div class="text-right">
                         <button type="reset" class="btn btn-danger">Reset</button>
                         <button type="submit" name="btn-simpan" class="btn btn-primary">Simpan</button>

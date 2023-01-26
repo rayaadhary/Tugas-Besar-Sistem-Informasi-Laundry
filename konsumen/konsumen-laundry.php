@@ -28,7 +28,7 @@ require '../layout/layout_header.php';
                                 <table class="table" id="table">
                                     <thead>
                                         <tr>
-                                            <th>NO</th>
+                                            <th>No</th>
                                             <th>ID Konsumen</th>
                                             <th>Nama Konsumen</th>
                                             <th>No Telepon</th>

@@ -67,8 +67,10 @@
                         <a class="nav-toggler open-close waves-effect waves-light hidden-lg" href="javascript:void(0)"><i class="fa fa-bars"></i></a>
                     </li>
                     <li>
-                        <a class="profile-pic" href="#"> <img src="../assets/images/avatar.svg" alt="user-img" width="36" class="img-circle">
-                            <b class="hidden-xs"><?= $_SESSION['nm_pengguna']; ?></b></a>
+                        <a class="profile-pic" href="">
+                            <img src="../assets/images/avatar.svg" alt="user-img" width="36" class="img-circle">
+                            <b class="hidden-xs"><?= $_SESSION['nm_pengguna']; ?></b>
+                        </a>
                     </li>
                 </ul>
             </div>
@@ -117,15 +119,15 @@
                             } ?>">
                             <i class="fa fa-files-o fa-fw" aria-hidden="true"></i>Laporan
                         </a>
-                        <?php 
-                            if ($_SESSION['role'] == 'pemilik') {
+                        <?php
+                        if ($_SESSION['role'] == 'pemilik') {
                         ?>
-                        <a href="../pengguna/pengguna.php" class="waves-effect 
+                            <a href="../pengguna/pengguna.php" class="waves-effect 
                             <?php if ($title == 'Pengguna-Laundry') {
                                 echo 'active';
                             } ?>">
-                            <i class="fa fa-user fa-fw" aria-hidden="true"></i>Pengguna
-                        </a>
+                                <i class="fa fa-user fa-fw" aria-hidden="true"></i>Pengguna
+                            </a>
                         <?php } ?>
                     </li>
                 </ul>

@@ -14,7 +14,7 @@ if (isset($_POST['btn-simpan'])) {
     $nm_konsumen = $_POST['nm_konsumen'];
     $no_tlp = $_POST['no_tlp'];
     $tgl    = $_POST['tgl'];
-    $id_pengguna = $_POST['id_pengguna'];
+    $id_pengguna = $_SESSION['id_pengguna'];
     $layanan = $_POST['layanan'];
     $berat = $_POST['berat'];
 
@@ -42,8 +42,7 @@ if (isset($_POST['btn-simpan'])) {
             if ($execute == 1) {
                 $no_faktur = $conn->insert_id;
                 $kd_barang = $conn->insert_id;
-                $query3 = "INSERT INTO detail_transaksi (no_faktur, kd_barang, id_layanan, berat) 
-                values ('$no_faktur','$kd_barang','$layanan','$berat')";
+                $query3 = "INSERT INTO detail_transaksi(no_faktur, kd_barang, id_layanan, berat) values ($no_faktur, $kd_barang, '$layanan','$berat')";
                 $execute = bisa($conn, $query3);
 
                 if ($execute == 1) {
@@ -87,17 +86,11 @@ require '../layout/layout_header.php';
                     <div class="form-group">
                         <label>Tanggal Transaksi</label>
                         <input type="datetime" name="tgl" value="<?= $tgl ?>" class="form-control" readonly>
+                        <!-- <?php var_dump($query3) ?> -->
                     </div>
                     <div class="form-group">
-                        <label>Nama Penjaga Laundry</label>
-                        <select name="id_pengguna" class="form-control">
-                            <?php
-                            $datapengguna = getListPengguna();
-                            foreach ($datapengguna as $data) {
-                                echo "<option value=\"" . $data["id_pengguna"] . "\">" . $data["nm_pengguna"] . "</option>";
-                            }
-                            ?>
-                        </select>
+                        <label>Nama Pengguna</label>
+                        <input type="text" name="id_pengguna" value="<?= $_SESSION['nm_pengguna'] ?>" class="form-control" readonly>
                     </div>
                     <div class="form-group">
                         <label>Nama Konsumen</label>
@@ -129,7 +122,7 @@ require '../layout/layout_header.php';
                     <div class="form-group">
                         <label>Berat</label>
                         <input type="number" name="berat" class="form-control">
-                        <!-- <?php var_dump($query3)?> -->
+                        <!-- <?php var_dump($query3) ?> -->
                     </div>
                     <div class="text-right">
                         <button type="reset" class="btn btn-danger">Reset</button>

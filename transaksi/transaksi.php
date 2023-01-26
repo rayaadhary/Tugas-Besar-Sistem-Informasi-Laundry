@@ -57,7 +57,7 @@ $i = 1;
                     <table class="table thead-dark" id="table">
                         <thead>
                             <tr>
-                                <th>#</th>
+                                <th>No</th>
                                 <th>No. Faktur</th>
                                 <th>Tanggal</th>
                                 <th>Pegawai</th>
@@ -92,7 +92,11 @@ $i = 1;
                                             <i class="fa fa-pencil-square-o"></i>
                                         </a>
                                         <a href="transaksi-hapus.php?no_faktur=<?= $transaksi['no_faktur']; ?>" class="btn btn-danger btn-sm delete-data">
-                                            <i class="fa fa-trash"></i></a>
+                                            <i class="fa fa-trash"></i>
+                                        </a>
+                                        <a href="cetak-transaksi.php?no_faktur=<?= $transaksi['no_faktur']; ?>" class="btn btn-info btn-sm">
+                                            <i class="fa fa-print"></i>
+                                        </a>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>

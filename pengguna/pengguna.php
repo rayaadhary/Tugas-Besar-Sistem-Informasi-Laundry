@@ -29,7 +29,7 @@ require '../layout/layout_header.php';
                             <table class="table" id="table">
                                 <thead>
                                     <tr>
-                                        <th>#</th>
+                                        <th>No</th>
                                         <th>ID</th>
                                         <th>Nama</th>
                                         <th>Telepon</th>

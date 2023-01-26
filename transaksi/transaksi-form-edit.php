@@ -21,7 +21,7 @@ if (isset($_POST['btn-simpan'])) {
     $nm_konsumen = $_POST['nm_konsumen'];
     $no_tlp = $_POST['no_tlp'];
     $tgl = $_POST['tgl'];
-    $id_pengguna = $_POST['id_pengguna'];
+    $id_pengguna = $_SESSION['id_pengguna'];
     $layanan = $_POST['layanan'];
     $berat = $_POST['berat'];
     $deskripsi = $_POST['deskripsi'];
@@ -82,16 +82,8 @@ require "../layout/layout_header.php";
                         <input type="datetime" name="tgl" value="<?= $tgl ?>" class="form-control" readonly>
                     </div>
                     <div class="form-group">
-                        <label>Nama Penjaga Laundry</label>
-                        <select name="id_pengguna" class="form-control">
-                            <?php foreach ($penjaga as $p) : ?>
-                                <?php if ($p['id_pengguna'] == $transaksi['id_pengguna']) : ?>
-                                    <option value="<?= $p['id_pengguna']; ?>" selected><?= $p['nm_pengguna']; ?></option>
-                                <?php else : ?>
-                                    <option value="<?= $p['id_pengguna']; ?>"><?= $p['nm_pengguna']; ?></option>
-                                <?php endif; ?>
-                            <?php endforeach; ?>
-                        </select>
+                        <label>Nama Pengguna</label>
+                        <input type="text" name="id_pengguna" value="<?= $_SESSION['nm_pengguna'] ?>" class="form-control" readonly>
                     </div>
                     <div class="form-group">
                         <label>Nama Konsumen</label>
