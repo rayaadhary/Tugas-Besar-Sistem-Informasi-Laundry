@@ -21,7 +21,7 @@ if (isset($_POST['btn-simpan'])) {
         $success = 'true';
         $title = 'Berhasil';
         $message = 'Berhasil mengubah ' . $jabatan;
-        $type = 'success';
+        $type = 'info';
         header('location: pengguna.php?crud=' . $success . '&msg=' . $message . '&type=' . $type . '&title=' . $title);
     } else {
         echo "Gagal Tambah Data";

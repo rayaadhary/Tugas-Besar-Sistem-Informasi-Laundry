@@ -20,7 +20,7 @@ if ($query == 1) {
             $success = 'true';
             $title = 'Berhasil';
             $message = 'Berhasil menghapus transaksi';
-            $type = 'success';
+            $type = 'warning';
             header('location: transaksi.php?crud=' . $success . '&msg=' . $message . '&type=' . $type . '&title=' . $title);
         } else {
             echo "Gagal Hapus Data";
