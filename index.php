@@ -1,14 +1,12 @@
-<?php  
-  session_start();
-  if(isset($_COOKIE['username']) && isset($_COOKIE['password'])){
-    $Id=$_COOKIE['username'];
-    $pass=$_COOKIE['password'];
-  }
-  else {
-    $Id ="";
-    $pass="";
-  }
-;?>
+<?php
+session_start();
+if (isset($_COOKIE['username']) && isset($_COOKIE['password'])) {
+	$Id = $_COOKIE['username'];
+	$pass = $_COOKIE['password'];
+} else {
+	$Id = "";
+	$pass = "";
+}; ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -51,12 +49,12 @@
 						Aplikasi Pengelolaan Laundry
 					</span>
 				</div>
-				
+
 				<?php if (isset($_GET['msg'])) {
 					$msg = $_GET['msg'];
 					if ($msg == 1) {
 				?>
-						<div class="alert alert-success" role="alert">Username atau  Password salah!</div>
+						<div class="alert alert-success" role="alert">Username atau Password salah!</div>
 					<?php
 					} else if ($msg == 2) {
 					?>
@@ -68,22 +66,22 @@
 				<form class="login100-form validate-form" method="POST" action="ceklogin.php">
 					<div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
 						<span class="label-input100">Username</span>
-						<input value="<?php echo $Id ?>"class="input100" type="text" name="username" placeholder="Enter username">
+						<input value="<?php echo $Id ?>" class="input100" type="text" name="username" placeholder="Enter username">
 						<span class="focus-input100"></span>
 					</div>
 
 					<div class="wrap-input100  m-b-18">
 						<span class="label-input100">Password</span>
-						<input value="<?php echo $pass ?>"  class="input100" type="password" name="password" placeholder="Enter password">
-						
+						<input value="<?php echo $pass ?>" class="input100" type="password" name="password" placeholder="Enter password">
+
 						<span class="focus-input100"></span>
 					</div>
 					<div class="form-row py-3">
-  <input class="form-check-input" type="checkbox"  id="flexCheckDefault" name="remember" <?php if(isset($_COOKIE["username"])) { ?> checked <?php } ?>>
-  <label class="form-check-label" for="remember-me">
-    Remember Me
-  </label>
-</div>
+						<input class="form-check-input" type="checkbox" id="flexCheckDefault" name="remember" <?php if (isset($_COOKIE["username"])) { ?> checked <?php } ?>>
+						<label class="form-check-label" for="remember-me">
+							Remember Me
+						</label>
+					</div>
 					<button class="btn btn-primary" name="btn_login" type="submit">
 						Login
 					</button>

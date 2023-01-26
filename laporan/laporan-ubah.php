@@ -24,7 +24,7 @@ if (isset($_POST['btn-simpan'])) {
             $success = 'true';
             $title = 'Berhasil';
             $message = 'Berhasil mengubah laporan';
-            $type = 'success';
+            $type = 'info';
             header('location: laporan.php?crud=' . $success . '&msg=' . $message . '&type=' . $type . '&title=' . $title);
         } else {
             echo "Gagal Ubah Data";

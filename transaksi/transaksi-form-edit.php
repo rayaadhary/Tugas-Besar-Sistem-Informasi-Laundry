@@ -44,7 +44,7 @@ if (isset($_POST['btn-simpan'])) {
                     $success = 'true';
                     $title = 'Berhasil';
                     $message = 'Berhasil mengubah transaksi';
-                    $type = 'success';
+                    $type = 'info';
                     header('location: transaksi.php?crud=' . $success . '&msg=' . $message . '&type=' . $type . '&title=' . $title);
                 } else {
                     echo "Gagal Ubah Data";
